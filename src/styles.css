@@ -1,2 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  /* font familt */
+  --font-family-work: "Work Sans", sans-serif;
+
+  /* fot sizes */
+  --font-size-xs: 0.875rem;                /* 14px */
+  --text-sm: 1rem; /* 16px */
+  --font-size-2xl: 2rem; /* 32px */
+
+  /* font weight */
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Layout / Spacing Tokens */
+  --spacing-gap-xs: 0.25rem; /* 4px */
+  --spacing-gap-sm: 0.5rem; /* 8px */
+
+  --spacing-gap-md: 0.75rem; /* 12px */
+  --spacing-base: 1rem; /* 16px */
+
+  --padding-y-xs: 0.5rem; /* 8px */
+  --padding-y-sm: 0.75rem; /* 12px */
+  --padding-y-md: 1.25rem; /* 20px */
+
+  --padding-x-xs: 0.5rem; /* 8px */
+  --padding-x-sm: 0.75rem; /* 12px */
+  --padding-x-lg: 1.5rem; /* 24px */
+  --padding-x-xl: 2.5rem; /* 40px */
+
+
+  
+}
