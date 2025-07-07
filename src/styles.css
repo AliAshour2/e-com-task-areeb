@@ -2,11 +2,17 @@
 @import "tailwindcss";
 
 @theme {
+  /*Colors  */
+  --color-bg: #ffffff; /* Background */
+  --color-surface: #f2f2f5; /* For hover backgrounds, inputs, buttons, SVGs → Often called "surface" or "muted-bg" in systems */
+  --color-text-muted: #697582; /* For placeholder or secondary text → Muted text */
+  --color-text-primary: #121417; /* For main text */
+
   /* font familt */
   --font-family-work: "Work Sans", sans-serif;
 
   /* fot sizes */
-  --font-size-xs: 0.875rem;                /* 14px */
+  --font-size-xs: 0.875rem; /* 14px */
   --text-sm: 1rem; /* 16px */
   --font-size-2xl: 2rem; /* 32px */
 
@@ -14,22 +20,28 @@
   --font-weight-medium: 500;
   --font-weight-bold: 700;
 
+
+  /* LINE HEIGHT */
+  --line-height-sm: 1.3125; /* nav element, select, price */
+  --line-height-base: 1.5; /* nav title, search, card title */
+  --line-height-lg: 1.4375; /* header title */
+  --line-height-xl: 2.5; /* h1 */
+
+
   /* Layout / Spacing Tokens */
   --spacing-gap-xs: 0.25rem; /* 4px */
   --spacing-gap-sm: 0.5rem; /* 8px */
+  --spacing-gap-lg: 0.75rem; /* 12px*/
 
   --spacing-gap-md: 0.75rem; /* 12px */
   --spacing-base: 1rem; /* 16px */
 
-  --padding-y-xs: 0.5rem; /* 8px */
-  --padding-y-sm: 0.75rem; /* 12px */
-  --padding-y-md: 1.25rem; /* 20px */
+  --spacing-p-y-xs: 0.5rem; /* 8px */
+  --spacing-p-y-sm: 0.75rem; /* 12px */
+  --spacing-p-y-md: 1.25rem; /* 20px */
 
-  --padding-x-xs: 0.5rem; /* 8px */
-  --padding-x-sm: 0.75rem; /* 12px */
-  --padding-x-lg: 1.5rem; /* 24px */
-  --padding-x-xl: 2.5rem; /* 40px */
-
-
-  
+  --spacing-p-x-xs: 0.5rem; /* 8px */
+  --spacing-p-x-sm: 0.75rem; /* 12px */
+  --spacing-p-x-lg: 1.5rem; /* 24px */
+  --spacing-p-x-xl: 2.5rem; /* 40px */
 }
