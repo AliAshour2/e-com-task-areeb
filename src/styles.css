@@ -12,21 +12,26 @@
   --font-family-work: "Work Sans", sans-serif;
 
   /* fot sizes */
-  --font-size-xs: 0.875rem; /* 14px */
-  --text-sm: 1rem; /* 16px */
-  --font-size-2xl: 2rem; /* 32px */
+  --fons-size-xxs : 0.50rem 
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
 
   /* font weight */
   --font-weight-medium: 500;
   --font-weight-bold: 700;
-
 
   /* LINE HEIGHT */
   --line-height-sm: 1.3125; /* nav element, select, price */
   --line-height-base: 1.5; /* nav title, search, card title */
   --line-height-lg: 1.4375; /* header title */
   --line-height-xl: 2.5; /* h1 */
-
 
   /* Layout / Spacing Tokens */
   --spacing-gap-xs: 0.25rem; /* 4px */
@@ -38,7 +43,9 @@
 
   --spacing-p-y-xs: 0.5rem; /* 8px */
   --spacing-p-y-sm: 0.75rem; /* 12px */
-  --spacing-p-y-md: 1.25rem; /* 20px */
+  --spacing-p-y-md: 1rem; /* 16px */
+
+  --spacing-p-y-lg: 1.25rem; /* 20px */
 
   --spacing-p-x-xs: 0.5rem; /* 8px */
   --spacing-p-x-sm: 0.75rem; /* 12px */
