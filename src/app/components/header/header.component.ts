@@ -3,7 +3,7 @@ import { SearchIconComponent } from '../../icons/search-icon/search-icon.compone
 
 @Component({
   selector: 'app-header',
-  imports: [SearchIconComponent],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

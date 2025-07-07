@@ -1,0 +1,41 @@
+<div class="w-full max-w-sm rounded-lg bg-surface p-6 font-work shadow-sm">
+  <div class="flex items-center space-x-4">
+    <div class="h-12 w-12 rounded-xl ">
+      <img class="w-full h-full rounded-3xl object-cover" src={{product.image}} alt="">
+    </div>
+    <div>
+      <h2 class="text-base font-bold text-textPrimary">{{ product.name }}</h2>
+      <p class="text-sm text-textMuted">{{ product.category }}</p>
+    </div>
+  </div>
+
+  <p class="mt-4 text-sm text-textMuted leading-base">
+    {{ product.description }}
+  </p>
+
+  <div class="mt-6 flex items-center justify-between gap-1">
+    <button
+      class="rounded-md w-full bg-black px-4 py-2 text-white hover:bg-gray-800 transition"
+    >
+      Contact
+    </button>
+    <button
+      class="rounded-md border border-gray-300 p-3 hover:bg-gray-200 transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5.121 17.804A3 3 0 016 17h12a3 3 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
