@@ -1,30 +1,53 @@
-<div class="w-full max-w-sm rounded-lg bg-surface p-6 font-work shadow-sm">
-  <div class="flex items-center space-x-4">
-    <div class="h-12 w-12 rounded-xl ">
-      <img class="w-full h-full rounded-3xl object-cover" src={{product.image}} alt="">
+<div class="mx-auto bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+  <!-- Top Row: Avatar, Name+Category, Status+Menu -->
+  <div class="flex items-start justify-between mb-4">
+    <!-- Avatar + Name/Category -->
+    <div class="flex items-center gap-3 flex-1 min-w-0">
+      <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+        <img class="w-full h-full object-cover" src="{{ product.image }}" alt="{{ product.name }}" />
+      </div>
+      <div class="min-w-0">
+        <h2 class="text-lg font-semibold text-gray-900 line-clamp-1 overflow-hidden">{{ product.name }}</h2>
+        <app-category-chip [category]="product.category"></app-category-chip>
+      </div>
     </div>
-    <div>
-      <h2 class="text-base font-bold text-textPrimary">{{ product.name }}</h2>
-      <p class="text-sm text-textMuted">{{ product.category }}</p>
+    <!-- Status + Menu -->
+    <div class="flex flex-col items-end gap-2 ml-2">
+      <button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors" aria-label="More options">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <circle cx="12" cy="6" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="18" r="1.5"/>
+        </svg>
+      </button>
+      <app-status-badge [status]="status"></app-status-badge>
+     
     </div>
   </div>
 
-  <p class="mt-4 text-sm text-textMuted leading-base">
+  <!-- Description -->
+  <p class="text-sm text-gray-600 mb-6 leading-relaxed">
     {{ product.description }}
   </p>
 
-  <div class="mt-6 flex items-center justify-between gap-1">
+  <!-- Bottom Row: Contact Button + Profile Icon -->
+  <div class="flex items-center gap-2 mt-6">
     <button
-      class="rounded-md w-full bg-black px-[var(--spacing-p-x-sm)]   py-2 text-white hover:bg-gray-800 transition"
+      [ngClass]="{
+        'bg-teal-500 hover:bg-teal-600': status === 'Not-Contacted',
+        'bg-gray-300 text-gray-500 cursor-not-allowed': status === 'Contacted'
+      }"
+      class="flex-1 bg-teal-500 hover:bg-teal-600 text-white rounded-md px-4 py-2 text-sm font-medium transition-colors"
+      (click)="toggleContact()"
+      [disabled]="false"
     >
-      Contact
+      {{ status === 'Contacted' ? 'Contacted' : 'Contact' }}
     </button>
     <button
-      class="rounded-md border border-gray-300 p-3 hover:bg-gray-200 transition"
+      class="h-10 w-10 p-0 bg-transparent border border-gray-300 rounded-md hover:bg-gray-50 transition-colors flex items-center justify-center"
+      aria-label="Profile"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
+        class="h-4 w-4 text-gray-500 mx-auto"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

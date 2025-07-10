@@ -2,55 +2,88 @@
 @import "tailwindcss";
 
 @theme {
-  /*Colors  */
-  --color-bg: #ffffff; /* Background */
-  --color-surface: #f2f2f5; /* For hover backgrounds, inputs, buttons, SVGs → Often called "surface" or "muted-bg" in systems */
-  --color-text-muted: #697582; /* For placeholder or secondary text → Muted text */
-  --color-text-primary: #121417; /* For main text */
+  /* ===== COLORS ===== */
+  --color-bg: #ffffff; /* App background */
+  --color-surface: #f2f2f5; /* Cards, inputs */
+  --color-muted: #697582; /* Secondary text */
+  --color-primary: #121417; /* Main text */
 
-  /* font familt */
-  --font-family-work: "Work Sans", sans-serif;
 
-  /* fot sizes */
-  --fons-size-xxs : 0.50rem 
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-5xl: 3rem; /* 48px */
+    /* New Colors */
+  --color-primary-100: #e0f2ff;
+  --color-primary-500: #3b82f6;
+  --color-primary-700: #1d4ed8;
 
-  /* font weight */
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
+  --color-secondary-100: #fce7f3;
+  --color-secondary-500: #ec4899;
+  --color-secondary-700: #be185d;
 
-  /* LINE HEIGHT */
-  --line-height-sm: 1.3125; /* nav element, select, price */
-  --line-height-base: 1.5; /* nav title, search, card title */
-  --line-height-lg: 1.4375; /* header title */
-  --line-height-xl: 2.5; /* h1 */
+  --color-success-100: #dcfce7;
+  --color-success-500: #22c55e;
+  --color-success-700: #15803d;
 
-  /* Layout / Spacing Tokens */
-  --spacing-gap-xs: 0.25rem; /* 4px */
-  --spacing-gap-sm: 0.5rem; /* 8px */
-  --spacing-gap-lg: 0.75rem; /* 12px*/
+  --color-warning-100: #fef9c3;
+  --color-warning-500: #eab308;
+  --color-warning-700: #b45309;
 
-  --spacing-gap-md: 0.75rem; /* 12px */
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-700: #b91c1c;
+
+  --color-info-100: #e0f2fe;
+  --color-info-500: #3b82f6;
+  --color-info-700: #1e40af;
+
+  --color-gray-100: #f3f4f6;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+
+
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-sans: "Work Sans", sans-serif;
+
+  /* Font sizes */
+  --text-xxs: 0.5rem; /* Tags, microcopy */
+  --text-xs: 0.75rem; /* Captions */
+  --text-sm: 0.875rem; /* Small text */
+  --text-base: 1rem; /* Body text */
+  --text-lg: 1.125rem; /* Subheadings */
+  --text-xl: 1.25rem; /* Section titles */
+  --text-2xl: 1.5rem; /* Headings */
+  --text-3xl: 1.875rem; /* Page titles */
+  --text-4xl: 2.25rem; /* Hero text */
+  --text-5xl: 3rem; /* Display text */
+
+  /* Font weights */
+  --font-medium: 500; /* Emphasis */
+  --font-bold: 700; /* Headings */
+
+  /* Line heights */
+  --leading-sm: 1.3125; /* Compact */
+  --leading-base: 1.5; /* Normal */
+  --leading-lg: 1.4375; /* Headings */
+  --leading-xl: 2.5; /* Large text */
+
+  /* ===== SPACING ===== */
+  --spacing-xxs: 0.125rem; /* 2px (icons) */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 0.75rem; /* 12px */
   --spacing-base: 1rem; /* 16px */
+  --spacing-lg: 1.25rem; /* 20px */
+  --spacing-xl: 1.5rem; /* 24px */
+  --spacing-2xl: 2.5rem; /* 40px */
 
-  --spacing-p-y-xs: 0.5rem; /* 8px */
-  --spacing-p-y-sm: 0.75rem; /* 12px */
-  --spacing-p-y-md: 1rem; /* 16px */
 
-  --spacing-p-y-lg: 1.25rem; /* 20px */
-
-  --spacing-p-x-xxs: 0.125rem; /* 2px */
-  --spacing-p-x-s: 0.25rem;   /* 4px */
-  --spacing-p-x-xs: 0.5rem; /* 8px */
-  --spacing-p-x-sm: 0.75rem; /* 12px */
-  --spacing-p-x-lg: 1.5rem; /* 24px */
-  --spacing-p-x-xl: 2.5rem; /* 40px */
+  /* ===== BORDER RADIUS ===== */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px (buttons) */
+  --radius-md: 0.375rem; /* 6px (cards) */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-4xl: 2rem; /* 32px */
 }

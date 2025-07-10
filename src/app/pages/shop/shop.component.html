@@ -3,7 +3,7 @@
 
   <div class="mb-6 flex flex-wrap gap-3">
     <select
-      class="rounded-3xl font-size: text-[var(--font-size-sm)]  fw-[var(--font-weight-medium)]; font-family: var(--font-family-work) border border-gray-300 bg-surface text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
+      class="rounded-3xl font-sans text-sm fw-medium; font:sans border border-gray-300 bg-surface text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
       [(ngModel)]="selectedSort"
     >
       <option value="default">Sort by</option>
@@ -12,7 +12,7 @@
     </select>
 
     <select
-      class="rounded-3xl   font-family: var(--font-family-work) border border-gray-300 bg-surface text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
+      class="rounded-3xl font-sans text-sm fw-medium; font:sans border border-gray-300 bg-surface text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
       [(ngModel)]="selectedSize"
     >
       <option value="all">Size</option>
@@ -23,12 +23,12 @@
     </select>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @for(product of filteredProducts; track product.name){
-      <app-shop-card
-     
-     [product]="product"
-   ></app-shop-card> 
+    <app-shop-card
+      [product]="product"
+      (contact)="onContact(product)"
+    ></app-shop-card>
     }
   </div>
 </div>

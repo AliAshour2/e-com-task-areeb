@@ -12,4 +12,9 @@ import { ShopComponent } from './pages/shop/shop.component';
 })
 export class AppComponent {
   title = 'e-com-task-areeb';
+  searchQuery = '';
+
+  onSearchQueryChange(query: string) {
+    this.searchQuery = query;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { SearchIconComponent } from '../../icons/search-icon/search-icon.component';
 
 @Component({
@@ -8,5 +8,11 @@ import { SearchIconComponent } from '../../icons/search-icon/search-icon.compone
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @Input() searchQuery = '';
+  @Output() searchQueryChange = new EventEmitter<string>();
 
+  onSearchChange(value: string) {
+    this.searchQuery = value;
+    this.searchQueryChange.emit(this.searchQuery);
+  }
 }

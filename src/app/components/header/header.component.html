@@ -1,8 +1,8 @@
 <header
-  class="flex justify-between items-center w-full h-16 px-[var(--spacing-p-x-lg)] py-[var(--spacing-p-y-sm)] border-b border-[#E0E0E0] font-[var(--font-family-work)]"
+  class="flex justify-between items-center w-full px-lg py-sm border-b border-[#E0E0E0] font-sans"
 >
   <!-- Logo -->
-  <div class="flex items-center gap-[var(--spacing-gap-lg)]">
+  <div class="flex items-center gap-lg">
     <svg
       class="w-4 h-4"
       viewBox="0 0 16 16"
@@ -12,15 +12,15 @@
       <!-- Add your logo SVG path here -->
     </svg>
     <span
-      class="text-[var( --font-size-sm)] font-[var(--font-weight-bold)] text-[var(--color-text-primary)]"
+      class="text-sm font-bold text-primary ]"
       >Fashion Hub</span
     >
   </div>
 
-  <div class="flex items-center gap-[var(--spacing-gap-lg)]">
+  <div class="flex items-center gap-lg ">
     <!-- Search Input -->
     <div
-      class="flex items-center bg-[var(--color-surface)] rounded-full px-[var(--spacing-p-x-sm)] py-[var(--spacing-p-y-xs)]"
+      class="flex items-center bg-surface rounded-full px-sm py-xs"
     >
       <!-- Search Icon -->
       <svg
@@ -47,16 +47,18 @@
 
       <input
         type="text"
-        placeholder="Search"
-        class="bg-transparent focus:outline-none color-[var(--color-text-muted)] text-[var(--font-size-s)] fw-[var(--font-weight-medium)] placeholder:text-[var(--font-size-sm)] placeholder:font-[var(--font-weight-medium)] w-32"
-        style="font-family: var(--font-family-work)"
+        placeholder="Search by name"
+        class="rounded-3xl   text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
+        [value]="searchQuery"
+        (input)="onSearchChange($any($event.target).value)"
+        style="min-width: 200px;"
       />
     </div>
 
     <!-- Actions -->
-    <div class="flex items-center gap-[var(--spacing-gap-sm)]">
+    <div class="flex items-center gap-sm">
       <!-- Language Switcher -->
-      <button class="p-2 rounded-full hover:bg-[var(--color-surface)]">
+      <button class="p-2 rounded-full hover:bg-surface">
         <!-- Translate Icon -->
         <svg
           id="Globe_Earth_24"
@@ -97,7 +99,7 @@
       </button>
 
       <!-- Theme Switcher -->
-      <button class="p-2 rounded-full hover:bg-[var(--color-surface)]">
+      <button class="p-2 rounded-full hover:bg-surface">
         <!-- Hilal (Moon) Icon -->
         <svg
           width="24"

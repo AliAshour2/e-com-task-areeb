@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShopCardComponent } from '../../components/shop-card/shop-card.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms'; //
   styleUrl: './shop.component.css'
 })
 export class ShopComponent {
- selectedSort = 'default';
+  @Input() searchQuery = '';
+  selectedSort = 'default';
   selectedSize = 'all';
 
   products = [
@@ -21,6 +22,7 @@ export class ShopComponent {
       size: 'M',
       price: 79.99,
       description: 'Light and breezy dress perfect for summer outings.',
+      status: 'Not-Contacted',
     },
     {
       image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -29,6 +31,7 @@ export class ShopComponent {
       size: 'L',
       price: 59.99,
       description: 'Timeless denim jacket for a stylish layered look.',
+      status: 'Not-Contacted',
     },
     { image : "https://images.unsplash.com/photo-1638786023988-d27bed11e076?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       name: 'Classic Leather Boots',
@@ -36,6 +39,7 @@ export class ShopComponent {
       size: 'M',
       price: 129.99,
       description: 'Sturdy boots crafted from premium leather.',
+      status: 'Not-Contacted',
     },
     { image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       name: 'Sporty Running Shoes',
@@ -43,6 +47,7 @@ export class ShopComponent {
       size: 'S',
       price: 89.99,
       description: 'High-performance shoes for active lifestyles.',
+      status: 'Not-Contacted',
     },
     { image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       name: 'Cozy Knit Sweater',
@@ -50,15 +55,24 @@ export class ShopComponent {
       size: 'L',
       price: 49.99,
       description: 'Stay warm with this soft and cozy knitwear.',
+      status: 'Not-Contacted',
     },
     { image : "https://images.unsplash.com/photo-1638786023988-d27bed11e076?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       name: 'Stylish Handbag',
-      category: 'Accessories',
+      category: 'Software',
       size: 'One Size',
       price: 69.99,
       description: 'Elegant handbag to complement any outfit.',
+      status: 'Not-Contacted',
     },
   ];
+
+  onContact(product: any) {
+    const found = this.products.find(p => p.name === product.name);
+    if (found) {
+      found.status = found.status === 'Contacted' ? 'Not-Contacted' : 'Contacted';
+    }
+  }
 
   get filteredProducts() {
     let filtered = [...this.products];
@@ -71,6 +85,10 @@ export class ShopComponent {
       filtered.sort((a, b) => a.price - b.price);
     } else if (this.selectedSort === 'high') {
       filtered.sort((a, b) => b.price - a.price);
+    }
+
+    if (this.searchQuery.trim()) {
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(this.searchQuery.trim().toLowerCase()));
     }
 
     return filtered;
