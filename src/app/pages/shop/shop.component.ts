@@ -3,6 +3,7 @@ import { ShopCardComponent } from '../../components/shop-card/shop-card.componen
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // 
+import { SearchService } from '../../shared/services/search/search.service';
 @Component({
   selector: 'app-shop',
   imports: [ShopCardComponent ,FormsModule],
@@ -10,9 +11,12 @@ import { FormsModule } from '@angular/forms'; //
   styleUrl: './shop.component.css'
 })
 export class ShopComponent {
-  @Input() searchQuery = '';
+  searchQuery = '';
+  // @Input() searchQuery = '';
   selectedSort = 'default';
   selectedSize = 'all';
+
+  
 
   products = [
     {
@@ -67,6 +71,15 @@ export class ShopComponent {
     },
   ];
 
+  constructor(private searchService: SearchService) {}
+
+  ngOnInit(): void {
+    this.searchService.currentSearchQuery$.subscribe(query => {
+      this.searchQuery = query;
+    });
+  }
+
+
   onContact(product: any) {
     const found = this.products.find(p => p.name === product.name);
     if (found) {
@@ -88,7 +101,8 @@ export class ShopComponent {
     }
 
     if (this.searchQuery.trim()) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(this.searchQuery.trim().toLowerCase()));
+      const query = this.searchQuery.trim().toLowerCase();
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
     }
 
     return filtered;

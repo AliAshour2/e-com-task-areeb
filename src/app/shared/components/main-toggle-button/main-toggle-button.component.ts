@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output } from '@angular/core';
-import { ContactStatus } from '../../models/card.model';
+
 import { CommonModule } from '@angular/common';
+import { ContactStatus } from '../../../models/card.model';
 
 @Component({
   selector: 'app-main-toggle-button',

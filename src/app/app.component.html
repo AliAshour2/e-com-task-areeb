@@ -5,8 +5,11 @@
   <!-- Main Content Area -->
   <div class="flex-1 flex flex-col">
     <!-- Header -->
-    <app-header (searchQueryChange)="onSearchQueryChange($event)"></app-header>
-    <app-shop [searchQuery]="searchQuery"></app-shop>
+
+    <app-header></app-header>
+    <app-shop></app-shop>
+    <!-- <app-header (searchQueryChange)="onSearchQueryChange($event)"></app-header>
+    <app-shop [searchQuery]="searchQuery"></app-shop> -->
 
     <!-- Page Content -->
     <main class="flex-1 overflow-y-auto">

@@ -52,13 +52,13 @@ export class SidebarComponent {
   }));
 
   readonly menuItems = signal<MenuItem[]>([
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'shop', label: 'Shop', icon: '🛍️' },
-    { id: 'about', label: 'About', icon: 'ℹ️' },
-    { id: 'contact', label: 'Contact', icon: '📧' },
-    { id: 'blog', label: 'Blog', icon: '📝' },
-    { id: 'wishlist', label: 'Wishlist', icon: '❤️', badge: 3 },
-    { id: 'cart', label: 'Cart', icon: '🛒', badge: 2 },
+    { id: 'home', label: 'Home' },
+    { id: 'shop', label: 'Shop' },
+    { id: 'about', label: 'About', },
+    { id: 'contact', label: 'Contact' },
+    { id: 'blog', label: 'Blog' },
+    { id: 'wishlist', label: 'Wishlist' },
+    { id: 'cart', label: 'Cart' },
   ]);
 
   setActiveMenu(menu: string) {
