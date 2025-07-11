@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ShopCardComponent } from '../../components/shop-card/shop-card.component';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { FormsModule } from '@angular/forms'; // 
 import { SearchService } from '../../shared/services/search/search.service';
 @Component({
@@ -14,62 +13,66 @@ export class ShopComponent {
   searchQuery = '';
   // @Input() searchQuery = '';
   selectedSort = 'default';
-  selectedSize = 'all';
+  selectedLevel = 'all';
 
   
 
-  products = [
-    {
-      image : "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=711&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Elegant Summer Dress',
-      category: 'Clothing',
-      size: 'M',
-      price: 79.99,
-      description: 'Light and breezy dress perfect for summer outings.',
-      status: 'Not-Contacted',
-    },
-    {
-      image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Casual Denim Jacket',
-      category: 'Outerwear',
-      size: 'L',
-      price: 59.99,
-      description: 'Timeless denim jacket for a stylish layered look.',
-      status: 'Not-Contacted',
-    },
-    { image : "https://images.unsplash.com/photo-1638786023988-d27bed11e076?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Classic Leather Boots',
-      category: 'Footwear',
-      size: 'M',
-      price: 129.99,
-      description: 'Sturdy boots crafted from premium leather.',
-      status: 'Not-Contacted',
-    },
-    { image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Sporty Running Shoes',
-      category: 'Shoes',
-      size: 'S',
-      price: 89.99,
-      description: 'High-performance shoes for active lifestyles.',
-      status: 'Not-Contacted',
-    },
-    { image : "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Cozy Knit Sweater',
-      category: 'Sweaters',
-      size: 'L',
-      price: 49.99,
-      description: 'Stay warm with this soft and cozy knitwear.',
-      status: 'Not-Contacted',
-    },
-    { image : "https://images.unsplash.com/photo-1638786023988-d27bed11e076?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: 'Stylish Handbag',
-      category: 'Software',
-      size: 'One Size',
-      price: 69.99,
-      description: 'Elegant handbag to complement any outfit.',
-      status: 'Not-Contacted',
-    },
-  ];
+  developers  = [
+  {
+    image: "https://i.pravatar.cc/100?img=1",
+    name: "Sara Hassan",
+    role: "Frontend Developer",
+    level: "Mid",
+    salary: 5000,
+    description: "Specializes in building responsive UIs with Angular and React.",
+    status: "Not-Contacted",
+  },
+  {
+    image: "https://i.pravatar.cc/100?img=2",
+    name: "Ahmed ElSayed",
+    role: "Backend Developer",
+    level: "Senior",
+    salary: 7500,
+    description: "Experienced in Node.js, Express, and scalable REST APIs.",
+    status: "Not-Contacted",
+  },
+  {
+    image: "https://i.pravatar.cc/100?img=3",
+    name: "Yasmine Adel",
+    role: "UI/UX Designer",
+    level: "Mid",
+    salary: 6000,
+    description: "Focuses on user-centric design for web and mobile apps.",
+    status: "Not-Contacted",
+  },
+  {
+    image: "https://i.pravatar.cc/100?img=4",
+    name: "Omar Nabil",
+    role: "DevOps Engineer",
+    level: "Junior",
+    salary: 4500,
+    description: "Helps automate CI/CD pipelines and cloud deployment.",
+    status: "Not-Contacted",
+  },
+  {
+    image: "https://i.pravatar.cc/100?img=5",
+    name: "Laila Fathy",
+    role: "QA Engineer",
+    level: "Senior",
+    salary: 5800,
+    description: "Ensures software quality through manual and automated testing.",
+    status: "Not-Contacted",
+  },
+  {
+    image: "https://i.pravatar.cc/100?img=6",
+    name: "Mohamed Saeed",
+    role: "Project Manager",
+    level: "Lead",
+    salary: 9000,
+    description: "Coordinates tech teams and ensures timely delivery of projects.",
+    status: "Not-Contacted",
+  },
+];
 
   constructor(private searchService: SearchService) {}
 
@@ -81,23 +84,23 @@ export class ShopComponent {
 
 
   onContact(product: any) {
-    const found = this.products.find(p => p.name === product.name);
+    const found = this.developers .find(p => p.name === product.name);
     if (found) {
       found.status = found.status === 'Contacted' ? 'Not-Contacted' : 'Contacted';
     }
   }
 
   get filteredProducts() {
-    let filtered = [...this.products];
+    let filtered = [...this.developers ];
 
-    if (this.selectedSize !== 'all') {
-      filtered = filtered.filter((p) => p.size === this.selectedSize);
+    if (this.selectedLevel !== 'all') {
+      filtered = filtered.filter((p) => p.level === this.selectedLevel);
     }
 
     if (this.selectedSort === 'low') {
-      filtered.sort((a, b) => a.price - b.price);
+      filtered.sort((a, b) => a.salary - b.salary);
     } else if (this.selectedSort === 'high') {
-      filtered.sort((a, b) => b.price - a.price);
+      filtered.sort((a, b) => b.salary - a.salary);
     }
 
     if (this.searchQuery.trim()) {

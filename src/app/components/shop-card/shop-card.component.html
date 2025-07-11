@@ -53,6 +53,7 @@
     <app-main-toggle-button
       class="w-full"
       [status]="status"
+      (statusChange)="status = $event"
     ></app-main-toggle-button>
     <app-contact-button></app-contact-button>
   </div>
