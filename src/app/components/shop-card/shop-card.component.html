@@ -30,35 +30,7 @@
 
   <!-- Bottom Row: Contact Button + Profile Icon -->
   <div class="flex items-center gap-2 mt-6">
-    <button
-      [ngClass]="{
-        'bg-teal-500 hover:bg-teal-600': status === 'Not-Contacted',
-        'bg-gray-300 text-gray-500 cursor-not-allowed': status === 'Contacted'
-      }"
-      class="flex-1 bg-teal-500 hover:bg-teal-600 text-white rounded-md px-4 py-2 text-sm font-medium transition-colors"
-      (click)="toggleContact()"
-      [disabled]="false"
-    >
-      {{ status === 'Contacted' ? 'Contacted' : 'Contact' }}
-    </button>
-    <button
-      class="h-10 w-10 p-0 bg-transparent border border-gray-300 rounded-md hover:bg-gray-50 transition-colors flex items-center justify-center"
-      aria-label="Profile"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 text-gray-500 mx-auto"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5.121 17.804A3 3 0 016 17h12a3 3 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-        />
-      </svg>
-    </button>
+   <app-main-toggle-button class="w-full" [status]="status"  (statusChange)="onContactStatusChange($event)"></app-main-toggle-button>
+    <app-contact-button></app-contact-button>
   </div>
 </div>

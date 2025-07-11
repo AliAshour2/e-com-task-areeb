@@ -11,17 +11,12 @@
     >
       <!-- Add your logo SVG path here -->
     </svg>
-    <span
-      class="text-sm font-bold text-primary ]"
-      >Fashion Hub</span
-    >
+    <span class="text-sm font-bold text-primary ]">Fashion Hub</span>
   </div>
 
-  <div class="flex items-center gap-lg ">
+  <div class="flex items-center gap-lg">
     <!-- Search Input -->
-    <div
-      class="flex items-center bg-surface rounded-full px-sm py-xs"
-    >
+    <div class="flex items-center bg-surface rounded-full px-sm py-xs">
       <!-- Search Icon -->
       <svg
         width="24"
@@ -48,10 +43,10 @@
       <input
         type="text"
         placeholder="Search by name"
-        class="rounded-3xl   text-primary font-medium px-2 py-2 transition-colors duration-200 outline-none"
+        class="rounded-3xl text-primary text-xs font-medium font-work p-sm transition-colors duration-200 outline-none max-w-[256px] min-w-[130px]"
         [value]="searchQuery"
         (input)="onSearchChange($any($event.target).value)"
-        style="min-width: 200px;"
+        
       />
     </div>
 

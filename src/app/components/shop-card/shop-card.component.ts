@@ -1,12 +1,15 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryChipComponent } from "../common/category-chip/category-chip.component";
-import { StatusBadgeComponent } from '../common/status-badge/status-badge.component';
 import { ContactStatus } from '../../models/card.model';
+import { StatusBadgeComponent } from "../../common/status-badge/status-badge.component";
+import { CategoryChipComponent } from "../../common/category-chip/category-chip.component";
+import { ContactButtonComponent } from "../../common/contact-button/contact-button.component";
+import { MainToggleButtonComponent } from "../../common/main-toggle-button/main-toggle-button.component";
+
 
 @Component({
   selector: 'app-shop-card',
-  imports: [CommonModule, CategoryChipComponent, StatusBadgeComponent],
+  imports: [CommonModule, StatusBadgeComponent, CategoryChipComponent, ContactButtonComponent, MainToggleButtonComponent],
   templateUrl: './shop-card.component.html',
   styleUrl: './shop-card.component.css',
   standalone: true,
@@ -21,9 +24,8 @@ export class ShopCardComponent implements OnInit {
     this.status = this.product.status;
   }
 
-  toggleContact() {
-    this.status = this.status === ContactStatus.Contacted ? ContactStatus.NotContacted : ContactStatus.Contacted;
-    // Optionally emit event to parent if needed
-    // this.contact.emit();
+  onContactStatusChange(newStatus: ContactStatus) {
+    this.status = newStatus;
+    this.contact.emit(); 
   }
 }

@@ -1,11 +1,11 @@
-<div class="flex h-screen">
+<div class="flex h-screen max-w-[1480px] m-auto">
   <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
   <!-- Main Content Area -->
   <div class="flex-1 flex flex-col">
     <!-- Header -->
-    <app-header [searchQuery]="searchQuery" (searchQueryChange)="onSearchQueryChange($event)"></app-header>
+    <app-header (searchQueryChange)="onSearchQueryChange($event)"></app-header>
     <app-shop [searchQuery]="searchQuery"></app-shop>
 
     <!-- Page Content -->

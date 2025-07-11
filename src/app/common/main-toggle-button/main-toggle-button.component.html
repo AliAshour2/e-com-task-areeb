@@ -1,0 +1,11 @@
+<button
+class="flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors"
+[ngClass]="{
+  'bg-teal-500 hover:bg-teal-600 text-white': status === ContactStatus.NotContacted,
+  'bg-gray-300 text-gray-500 cursor-not-allowed': status === ContactStatus.Contacted
+}"
+  (click)="Toggle()"
+  [disabled]="status === ContactStatus.Contacted"
+>
+  {{ status === ContactStatus.Contacted ? 'Contacted' : 'Contact' }}
+</button>
