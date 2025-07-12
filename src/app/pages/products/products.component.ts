@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../../models/card.model';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from '../../services/products/products.service';
 import { ProductCardComponent } from "../../components/product-card/product-card.component";
 import { CardSkeletonComponent } from "../../shared/components/skeletons/card-skeleton/card-skeleton.component";
 

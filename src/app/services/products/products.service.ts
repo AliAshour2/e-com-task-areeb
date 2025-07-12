@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../models/card.model';
-import { API_ENDPOINTS, BaseUrl } from '../environment/contants';
+import { Product } from '../../models/card.model';
+import { API_ENDPOINTS, BaseUrl } from '../../environment/contants';
 
 
 @Injectable({
@@ -15,10 +15,13 @@ export class ProductsService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${BaseUrl}${API_ENDPOINTS.PRODUCTS.BASE}`);
+  };
+
+
+  getProduct(id : string): Observable<Product>{
+      return this.http.get<Product>(`${BaseUrl}${API_ENDPOINTS.PRODUCTS.SINGLE(id)}`)
   }
-
-
   
-  
+
   
 }

@@ -4,6 +4,7 @@ export const BaseUrl =  "https://fakestoreapi.com/"
 export const API_ENDPOINTS = {
     PRODUCTS: {
       BASE: '/products',
+      SINGLE : (id : string)=>`/products/${id}`,
       CATEGORIES: '/products/categories',
       CATEGORY: (category: string) => `/products/category/${category}`
     },
