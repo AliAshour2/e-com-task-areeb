@@ -1,0 +1,9 @@
+<div class="bg-white rounded shadow p-4 flex flex-col h-full ">
+    <img [src]="product.image" [alt]="product.title" class="h-40 object-contain mb-4" />
+    <h2 class="font-semibold text-lg mb-2">{{ product.title | truncate:40 }}</h2>
+    <p class="text-gray-600 mb-2">{{ product.description | truncate:60 }}</p>
+    <div class="flex items-center justify-between mt-auto">
+      <span class="text-green-600 font-bold">{{ product.price | currency:'$' }}</span>
+      <span class="text-xs text-gray-500">{{ product.category }}</span>
+    </div>
+  </div>

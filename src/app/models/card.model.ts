@@ -1,3 +1,14 @@
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}
+
+
+
 export interface Card {
     id?: number;
     name?: string;
@@ -7,6 +18,8 @@ export interface Card {
     category?: string;
     size?: string;
 }
+
+
 
 export interface Developer {
     id?: number;

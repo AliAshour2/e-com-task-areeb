@@ -15,6 +15,7 @@ import { ShopIconComponent } from '../../icons/shop-icon/shop-icon.component';
 import { ContactIconComponent } from '../../icons/contact-icon/contact-icon.component';
 import { BlogIconComponent } from '../../icons/blog-icon/blog-icon.component';
 import { AboutIconComponent } from '../../icons/about-icon/about-icon.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -24,21 +25,22 @@ import { AboutIconComponent } from '../../icons/about-icon/about-icon.component'
     ContactIconComponent,
     BlogIconComponent,
     AboutIconComponent,
+    RouterModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
-  // Angular 19 signal inputs
+  
   activeMenu = input<string>('shop');
 
-  // Angular 19 signal outputs
+  
   menuChange = output<string>();
 
-  // Angular 19 two-way binding with model
+  
   collapsed = model<boolean>(false);
 
-  // Internal state using signals
+  
   private readonly _isCollapsed = signal(false);
 
   // Computed properties
