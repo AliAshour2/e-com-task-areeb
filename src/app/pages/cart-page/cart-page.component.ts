@@ -7,9 +7,10 @@ import { ProductCardComponent } from "../../components/product-card/product-card
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule],
   templateUrl: './cart-page.component.html',
-  styleUrl: './cart-page.component.css'
+  styleUrl: './cart-page.component.css',
+  
 })
 export class CartPageComponent {
   cartItems;
