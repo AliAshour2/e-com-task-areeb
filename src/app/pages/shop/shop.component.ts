@@ -4,6 +4,7 @@ import { DeveloperCardComponent } from '../../components/developer-card/develope
 import { FormsModule } from '@angular/forms'; // 
 import { SearchService } from '../../shared/services/search/search.service';
 import { SelectfilterComponent } from "../../shared/components/select/selectfilter/selectfilter.component";
+import { ContactStatus } from '../../models/card.model';
 @Component({
   selector: 'app-shop',
   imports: [DeveloperCardComponent, FormsModule, SelectfilterComponent],
@@ -41,7 +42,7 @@ sizeOptions = [
     level: "Mid",
     salary: 5000,
     description: "Specializes in building responsive UIs with Angular and React.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
   {
     image: "https://i.pravatar.cc/100?img=2",
@@ -50,7 +51,7 @@ sizeOptions = [
     level: "Senior",
     salary: 7500,
     description: "Experienced in Node.js, Express, and scalable REST APIs.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
   {
     image: "https://i.pravatar.cc/100?img=3",
@@ -59,7 +60,7 @@ sizeOptions = [
     level: "Mid",
     salary: 6000,
     description: "Focuses on user-centric design for web and mobile apps.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
   {
     image: "https://i.pravatar.cc/100?img=4",
@@ -68,7 +69,7 @@ sizeOptions = [
     level: "Junior",
     salary: 4500,
     description: "Helps automate CI/CD pipelines and cloud deployment.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
   {
     image: "https://i.pravatar.cc/100?img=5",
@@ -77,7 +78,7 @@ sizeOptions = [
     level: "Senior",
     salary: 5800,
     description: "Ensures software quality through manual and automated testing.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
   {
     image: "https://i.pravatar.cc/100?img=6",
@@ -86,7 +87,7 @@ sizeOptions = [
     level: "Lead",
     salary: 9000,
     description: "Coordinates tech teams and ensures timely delivery of projects.",
-    status: "Not-Contacted",
+    status: ContactStatus.NotContacted
   },
 ];
 
@@ -102,7 +103,7 @@ sizeOptions = [
   onContact(product: any) {
     const found = this.developers .find(p => p.name === product.name);
     if (found) {
-      found.status = found.status === 'Contacted' ? 'Not-Contacted' : 'Contacted';
+      found.status = found.status === ContactStatus.Contacted ? ContactStatus.NotContacted : ContactStatus.Contacted;
     }
   }
 
