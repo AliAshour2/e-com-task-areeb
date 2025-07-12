@@ -15,13 +15,13 @@ import { ContactButtonComponent } from "../../shared/components/contact-button/c
   standalone: true,
 })
 export class DeveloperCardComponent implements OnInit {
-  @Input() product: any;
+  @Input() developer: any;
   @Output() contact = new EventEmitter<void>();
 
   status: ContactStatus = ContactStatus.NotContacted;
 
   ngOnInit() {
-    this.status = this.product.status;
+    this.status = this.developer.status;
   }
 
   onContactStatusChange(newStatus: ContactStatus) {

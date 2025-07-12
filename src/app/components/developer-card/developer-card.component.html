@@ -8,17 +8,17 @@
       >
         <img
           class="w-full h-full object-cover"
-          src="{{ product.image }}"
-          alt="{{ product.name }}"
+          src="{{ developer.image }}"
+          alt="{{ developer.name }}"
         />
       </div>
       <div class="min-w-0">
         <h2
           class="text-lg font-semibold text-gray-900 line-clamp-1 overflow-hidden"
         >
-          {{ product.name }}
+          {{ developer.name }}
         </h2>
-        <app-category-chip [category]="product.category"></app-category-chip>
+        <app-category-chip [role]="developer.role"></app-category-chip>
       </div>
     </div>
     <!-- Status + Menu -->
@@ -45,7 +45,7 @@
 
   <!-- Description -->
   <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-    {{ product.description }}
+    {{ developer.description }}
   </p>
 
   <!-- Bottom Row: Contact Button + Profile Icon -->

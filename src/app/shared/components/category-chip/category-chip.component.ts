@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class CategoryChipComponent {
-  @Input() category: string = '';
+  @Input() role: string = '';
 }

@@ -128,14 +128,14 @@ sizeOptions = [
   }
 
 
-  onContact(product: any) {
-    const found = this.developers .find(p => p.name === product.name);
+  onContact(developer: any) {
+    const found = this.developers .find(p => p.name === developer.name);
     if (found) {
       found.status = found.status === ContactStatus.Contacted ? ContactStatus.NotContacted : ContactStatus.Contacted;
     }
   }
 
-  get filteredProducts() {
+  get filteredDevelopers() {
     let filtered = [...this.developers ];
 
     if (this.selectedLevel !== 'all') {
