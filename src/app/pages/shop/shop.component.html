@@ -1,5 +1,21 @@
 <div class="p-6 font-work">
   <h1 class="text-2xl font-bold mb-4">Shop</h1>
+  <button 
+  (click)="openAddModal()" 
+  class="bg-blue-600 text-white px-4 py-2 rounded mb-4"
+>
+  Add Developer
+</button>
+  <app-modal 
+  [isOpen]="showAddModal"
+  title="Add Developer"
+  (close)="closeAddModal()"
+>
+  <app-add-developer-form
+    (submit)="onAddDeveloper($event)"
+    (cancel)="closeAddModal()"
+  ></app-add-developer-form>
+</app-modal>
 
   <div class="mb-6 flex flex-wrap gap-3">
     <!-- <select

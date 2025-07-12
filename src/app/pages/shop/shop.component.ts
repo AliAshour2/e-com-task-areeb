@@ -4,10 +4,12 @@ import { DeveloperCardComponent } from '../../components/developer-card/develope
 import { FormsModule } from '@angular/forms'; // 
 import { SearchService } from '../../shared/services/search/search.service';
 import { SelectfilterComponent } from "../../shared/components/select/selectfilter/selectfilter.component";
-import { ContactStatus } from '../../models/card.model';
+import { AddDeveloperForm, ContactStatus, Developer } from '../../models/card.model';
+import { ModalComponent } from "../../shared/components/modal/modal/modal.component";
+import { AddDeveloperFormComponent } from "../../components/add-developer-form/add-developer-form.component";
 @Component({
   selector: 'app-shop',
-  imports: [DeveloperCardComponent, FormsModule, SelectfilterComponent],
+  imports: [DeveloperCardComponent, FormsModule, SelectfilterComponent, ModalComponent, AddDeveloperFormComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
   standalone : true ,
@@ -17,6 +19,32 @@ export class ShopComponent {
   // @Input() searchQuery = '';
   selectedSort = 'default';
   selectedLevel = 'all';
+
+  showAddModal = false;
+  openAddModal() {
+    this.showAddModal = true;
+  }
+
+  closeAddModal() {
+    this.showAddModal = false;
+  }
+
+  onAddDeveloper(newDev: AddDeveloperForm) {
+    this.developers.push({
+      ...newDev,
+      id: this.generateId(), // Only new ones get an id
+      status: ContactStatus.NotContacted,
+      image: 'https://i.pravatar.cc/100?img=' + (Math.floor(Math.random() * 70) + 1)
+    });
+    this.closeAddModal();
+  }
+
+  private generateId() {
+    const ids = this.developers
+      .map(d => d.id)
+      .filter(id => typeof id === 'number');
+    return ids.length ? Math.max(...ids) + 1 : 1;
+  }
  
 
 
@@ -34,7 +62,7 @@ sizeOptions = [
 ];
   
 
-  developers  = [
+  developers: Developer[] = [
   {
     image: "https://i.pravatar.cc/100?img=1",
     name: "Sara Hassan",
