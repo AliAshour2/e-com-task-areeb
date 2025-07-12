@@ -3,6 +3,7 @@ import { Product } from '../../models/card.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate-pipe/truncate.pipe';
 import { HoverDirective } from '../../shared/directives/hover/hover.directive';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -12,4 +13,10 @@ import { HoverDirective } from '../../shared/directives/hover/hover.directive';
 })
 export class ProductCardComponent {
   @Input() product! : Product ;
+
+  constructor(private cartService: CartService) {}
+
+  addToCart() {
+    this.cartService.addToCart(this.product);
+  }
 }

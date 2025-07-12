@@ -1,0 +1,25 @@
+<div class=" mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Your Cart</h1>
+    @if (cartItems().length > 0) {
+
+    @for (item of cartItems(); track item.id) {
+    <div class="flex items-center justify-between bg-white rounded shadow p-4 mb-3">
+        <div class="flex items-center gap-4">
+            <img [src]="item.image" [alt]="item.title" class="h-16 w-16 object-contain rounded" />
+            <div>
+                <div class="font-semibold">{{ item.title }}</div>
+                <div class="text-gray-600">{{ item.price | currency:'$' }}</div>
+            </div>
+        </div>
+        <button (click)="cartService.removeFromCart(item.id)"
+            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Remove</button>
+    </div>
+    }
+    <div class="text-right font-bold mt-4">
+        Total: {{ total() | currency:'$' }}
+
+    </div>
+    } @else {
+    <div class="text-gray-500 text-center py-8">Your cart is empty.</div>
+    }
+</div>
