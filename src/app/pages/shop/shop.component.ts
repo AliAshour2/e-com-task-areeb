@@ -30,6 +30,10 @@ export class ShopComponent {
   }
 
   onAddDeveloper(newDev: AddDeveloperForm) {
+    if (!newDev.name || !newDev.role || !newDev.level || !newDev.salary || !newDev.description) {
+      return; // Don't add incomplete developer
+    }
+
     this.developers.push({
       ...newDev,
       id: this.generateId(), // Only new ones get an id
