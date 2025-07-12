@@ -8,13 +8,13 @@ import { ContactButtonComponent } from "../../shared/components/contact-button/c
 
 
 @Component({
-  selector: 'app-shop-card',
+  selector: 'app-developer-card',
   imports: [CommonModule, StatusBadgeComponent, CategoryChipComponent, MainToggleButtonComponent, ContactButtonComponent],
-  templateUrl: './shop-card.component.html',
-  styleUrl: './shop-card.component.css',
+  templateUrl: './developer-card.component.html',
+  styleUrl: './developer-card.component.css',
   standalone: true,
 })
-export class ShopCardComponent implements OnInit {
+export class DeveloperCardComponent implements OnInit {
   @Input() product: any;
   @Output() contact = new EventEmitter<void>();
 

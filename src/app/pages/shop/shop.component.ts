@@ -1,20 +1,36 @@
 import { Component, Input } from '@angular/core';
-import { ShopCardComponent } from '../../components/shop-card/shop-card.component';
+import { DeveloperCardComponent } from '../../components/developer-card/developer-card.component';
 
 import { FormsModule } from '@angular/forms'; // 
 import { SearchService } from '../../shared/services/search/search.service';
+import { SelectfilterComponent } from "../../shared/components/select/selectfilter/selectfilter.component";
 @Component({
   selector: 'app-shop',
-  imports: [ShopCardComponent ,FormsModule],
+  imports: [DeveloperCardComponent, FormsModule, SelectfilterComponent],
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.css'
+  styleUrl: './shop.component.css',
+  standalone : true ,
 })
 export class ShopComponent {
   searchQuery = '';
   // @Input() searchQuery = '';
   selectedSort = 'default';
   selectedLevel = 'all';
+ 
 
+
+  sortOptions = [
+  { value: 'low', label: 'Price: Low to High' },
+  { value: 'high', label: 'Price: High to Low' }
+];
+
+sizeOptions = [
+  { value: 'Junior', label: 'Junior' },
+  { value: 'Mid', label: 'Mid-Level' },
+  { value: 'Senior', label: 'Senior' },
+  { value: 'Lead', label: 'Lead' },
+  { value: 'all', label: 'All Levels' }
+];
   
 
   developers  = [

@@ -1,0 +1,10 @@
+<select
+      class="rounded-3xl font-sans text-sm fw-medium border border-gray-300 bg-surface text-primary px-2 py-2 transition-colors duration-200 outline-none"
+      [(ngModel)]="selectedValue"
+      (ngModelChange)="onChange()"
+    >
+      <option [value]="defaultValue">{{ label }}</option>
+      <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
