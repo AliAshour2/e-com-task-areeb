@@ -49,6 +49,6 @@
 
 
 <!-- Product Detail Modal -->
-<app-modal [isOpen]="isModalOpen" [title]="product.title" [showClose]="false" (close)="closeModal()">
+<app-modal [showClose]="true"  [isOpen]="isModalOpen" [title]="product.title" [showClose]="true" (close)="closeModal()">
   <app-product-detail [product]="product" (closeModal)="closeModal()"></app-product-detail>
 </app-modal>

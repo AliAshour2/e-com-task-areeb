@@ -6,7 +6,7 @@
         @if(title || showClose) {
         <div class="flex justify-between items-center p-6 border-b border-gray-200">
             @if(title) {
-            <h2 class="text-2xl font-bold text-gray-900">{{ title }}</h2>
+            <h2 class="text-2xl font-bold text-gray-900">{{ title | truncate:30}}</h2>
             }
             @if(showClose) {
             <button

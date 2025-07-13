@@ -1,9 +1,10 @@
 import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
 import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
+import { TruncatePipe } from '../../../../pipes/truncate-pipe/truncate.pipe';
 
 @Component({
   selector: 'app-modal',
-  imports: [ClickOutsideDirective],
+  imports: [ClickOutsideDirective , TruncatePipe],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })

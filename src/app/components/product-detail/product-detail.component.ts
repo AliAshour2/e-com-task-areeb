@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Product } from '../../models/card.model';
 import { CartService } from '../../services/cart/cart.service';
+import { TruncatePipe } from '../../pipes/truncate-pipe/truncate.pipe';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe],
+  imports: [CommonModule, CurrencyPipe , TruncatePipe],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
@@ -20,4 +21,9 @@ export class ProductDetailComponent {
     this.cartService.addToCart(this.product);
     this.closeModal.emit();
   }
+
+  get roundedRating(): number {
+    return Math.round(this.product.rating.rate);
+  }
+
 } 
