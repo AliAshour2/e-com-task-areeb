@@ -1,22 +1,27 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
+import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 
 @Component({
   selector: 'app-modal',
-  imports: [],
+  imports: [ClickOutsideDirective],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  @Input() isOpen = false ;
-  @Input() title = '' ;
-  @Input() showColse = true ;
+  @Input() isOpen = false;
+  @Input() title = '';
+  @Input() showClose = true;
   @Input() closeOnOverlayClick = true;
   @Output() close = new EventEmitter<void>();
 
 
-  ngOnInit() {
-    if (this.isOpen) {
-      this.disableBodyScroll();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isOpen']) {
+      if (this.isOpen) {
+        this.disableBodyScroll();
+      } else {
+        this.enableBodyScroll();
+      }
     }
   }
 
@@ -28,10 +33,6 @@ export class ModalComponent {
     if (this.closeOnOverlayClick) {
       this.closeModal();
     }
-  }
-
-  onCloseClick() {
-    this.closeModal();
   }
 
   private closeModal() {
@@ -46,6 +47,4 @@ export class ModalComponent {
   private enableBodyScroll() {
     document.body.style.overflow = '';
   }
-
-
 }
