@@ -9,19 +9,17 @@ import { API_ENDPOINTS, BaseUrl } from '../../environment/contants';
   providedIn: 'root'
 })
 export class ProductsService {
-  
 
-  constructor(private http:HttpClient){}
+
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${BaseUrl}${API_ENDPOINTS.PRODUCTS.BASE}`);
   };
 
 
-  getProduct(id : string): Observable<Product>{
-      return this.http.get<Product>(`${BaseUrl}${API_ENDPOINTS.PRODUCTS.SINGLE(id)}`)
+  getProduct(id: string): Observable<Product> {
+    return this.http.get<Product>(`${BaseUrl}${API_ENDPOINTS.PRODUCTS.SINGLE(id)}`)
   }
-  
 
-  
 }

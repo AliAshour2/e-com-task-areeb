@@ -12,9 +12,31 @@
     </div>
 
     }@else {
+
+    <div class="flex gap-x-xs mb-lg">
+        <app-selectfilter [options]="categoryOptions" [defaultValue]="'all'" [label]="'Category'"
+        [(selectedValue)]="selectedCategory" (selectedValueChange)="onCategoryChange($event)">
+    </app-selectfilter>
+
+    <app-selectfilter [options]="priceOptions" [defaultValue]="'all'" [label]="'Price Range'"
+        [(selectedValue)]="selectedPriceRange" (selectedValueChange)="onPriceRangeChange($event)">
+    </app-selectfilter>
+
+    <app-selectfilter [options]="ratingOptions" [defaultValue]="'all'" [label]="'Minimum Rating'"
+        [(selectedValue)]="selectedMinRating" (selectedValueChange)="onMinRatingChange($event)">
+    </app-selectfilter>
+
+    <app-selectfilter [options]="sortOptions" [defaultValue]="'default'" [label]="'Sort By'"
+        [(selectedValue)]="selectedSort" (selectedValueChange)="onSortChange($event)">
+    </app-selectfilter>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        @for (product of products; track product.id) {
-        <app-product-card  [product]="product"></app-product-card>
+        @for (product of (products | categoryFilter:selectedCategory
+        | priceFilter:selectedPriceRange
+        | ratingFilter:selectedMinRating
+        | sortFilter:selectedSort ); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
         }
     </div>
     }
