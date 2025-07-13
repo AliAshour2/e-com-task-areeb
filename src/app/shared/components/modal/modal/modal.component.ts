@@ -9,7 +9,7 @@ import { ClickOutsideDirective } from '../../../directives/click-outside.directi
 })
 export class ModalComponent {
   @Input() isOpen = false;
-  @Input() title = '';
+  @Input() title? = '';
   @Input() showClose = true;
   @Input() closeOnOverlayClick = true;
   @Output() close = new EventEmitter<void>();

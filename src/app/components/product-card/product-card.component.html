@@ -13,10 +13,10 @@
 <app-modal 
   [isOpen]="isModalOpen" 
   [title]="product.title"
-  [showColse]="false"
+  [showClose]="false"
   (close)="closeModal()"
 >
-  <app-product-detail 
+  <app-product-detail  
     [product]="product" 
     (closeModal)="closeModal()"
   ></app-product-detail>
