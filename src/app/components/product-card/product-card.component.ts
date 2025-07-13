@@ -6,10 +6,11 @@ import { HoverDirective } from '../../shared/directives/hover/hover.directive';
 import { CartService } from '../../services/cart/cart.service';
 import { ModalComponent } from '../../shared/components/modal/modal/modal.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { AddToCartButtonComponent } from "../../shared/components/add-to-cart-button/add-to-cart-button.component";
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent],
+  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent, AddToCartButtonComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
@@ -22,6 +23,10 @@ export class ProductCardComponent {
 
   addToCart() {
     this.cartService.addToCart(this.product);
+  }
+
+  get roundedRating(): number {
+    return Math.round(this.product.rating.rate);
   }
 
   openProductModal() {
