@@ -7,10 +7,11 @@ import { CartService } from '../../services/cart/cart.service';
 import { ModalComponent } from '../../shared/components/modal/modal/modal.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { AddToCartButtonComponent } from "../../shared/components/add-to-cart-button/add-to-cart-button.component";
+import { RoundedRatingPipe } from '../../pipes/rounded-rating/rounded-rating.pipe';
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent, AddToCartButtonComponent],
+  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent, AddToCartButtonComponent , RoundedRatingPipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
@@ -25,9 +26,6 @@ export class ProductCardComponent {
     this.cartService.addToCart(this.product);
   }
 
-  get roundedRating(): number {
-    return Math.round(this.product.rating.rate);
-  }
 
   openProductModal() {
     this.isModalOpen = true;

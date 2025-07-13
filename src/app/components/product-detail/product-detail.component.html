@@ -28,7 +28,7 @@
   <!-- ⭐ Rating -->
   <div class="flex justify-center sm:justify-start items-center gap-1 text-yellow-500">
     @for (star of [1, 2, 3, 4, 5]; track star) {
-      @if (star <= roundedRating) {
+      @if (star <=(product.rating.rate | roundedRating) ) {
         <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20">
           <path d="M10 15l-5.878 3.09 1.122-6.545L.487 6.91l6.564-.954L10 0l2.949 5.956 6.564.954-4.757 4.635 1.122 6.545z" />
         </svg>
