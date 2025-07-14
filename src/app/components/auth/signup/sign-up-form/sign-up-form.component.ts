@@ -1,0 +1,92 @@
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SignUpService } from '../../../../services/auth/sign-up/sign-up.service';
+import { SignUpData } from '../../../../models/auth.model';
+import { InputFieldComponent } from '../../../../shared/components/input-field/input-field.component';
+
+@Component({
+  selector: 'app-sign-up-form',
+  imports: [ReactiveFormsModule,InputFieldComponent] ,
+  templateUrl: './sign-up-form.component.html',
+  styleUrl: './sign-up-form.component.css',
+  standalone : true 
+})
+export class SignUpFormComponent {
+
+  isLoading = false;
+  errorMessage = '';
+
+
+  constructor(private signUpService: SignUpService) {
+
+  }
+
+  signupForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/)
+    ]),
+    rePassword: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^01[0125][0-9]{8}$/)
+    ]),
+  }, { validators: this.checkPasswords });
+
+  checkPasswords(control: AbstractControl) {
+    const group = control as FormGroup;
+    const password = group.get('password')?.value;
+    const rePassword = group.get('rePassword')?.value;
+    return password === rePassword ? null : { notSame: true };
+  }
+
+  get nameControl(): FormControl {
+    return this.signupForm.get('name') as FormControl;
+  }
+  get emailControl(): FormControl {
+    return this.signupForm.get('email') as FormControl;
+  }
+  get passwordControl(): FormControl {
+    return this.signupForm.get('password') as FormControl;
+  }
+  get rePasswordControl(): FormControl {
+    return this.signupForm.get('rePassword') as FormControl;
+  }
+  get phoneControl(): FormControl {
+    return this.signupForm.get('phone') as FormControl;
+  }
+
+
+  onSubmit() {
+    if (this.signupForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+
+
+    const signupData: SignUpData = {
+      name: this.signupForm.value.name ?? '',
+      email: this.signupForm.value.email ?? '',
+      password: this.signupForm.value.password ?? '',
+      rePassword: this.signupForm.value.rePassword ?? '',
+      phone: this.signupForm.value.phone ?? ''
+    };
+
+
+    this.signUpService.signup(signupData).subscribe({
+      next: (response) => {
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage = error.error?.message || 'Signup failed. Please try again.';
+      }
+    })
+  }
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SearchService } from '../../shared/services/search/search.service';
 import { CartService } from '../../services/cart/cart.service';
 import { Router } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-header',
   imports: [],

@@ -1,4 +1,4 @@
-export const BaseUrl =  "https://fakestoreapi.com/"
+export const BaseUrlFake =  "https://fakestoreapi.com/"
 
 // src/app/core/constants/api-endpoints.const.ts
 export const API_ENDPOINTS = {
@@ -11,5 +11,10 @@ export const API_ENDPOINTS = {
     CARTS: {
       BASE: '/carts',
       USER: (userId: number) => `/carts/user/${userId}`
-    }
+    },
+
   };
+
+
+  export const BaseUrl  = "https://ecommerce.routemisr.com/api/v1/"
+  export const SignUpEndPoint = `${BaseUrl}auth/signup`
