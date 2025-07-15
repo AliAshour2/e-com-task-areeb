@@ -43,21 +43,7 @@ export class SignUpFormComponent {
     return password === rePassword ? null : { notSame: true };
   }
 
-  get nameControl(): FormControl {
-    return this.signupForm.get('name') as FormControl;
-  }
-  get emailControl(): FormControl {
-    return this.signupForm.get('email') as FormControl;
-  }
-  get passwordControl(): FormControl {
-    return this.signupForm.get('password') as FormControl;
-  }
-  get rePasswordControl(): FormControl {
-    return this.signupForm.get('rePassword') as FormControl;
-  }
-  get phoneControl(): FormControl {
-    return this.signupForm.get('phone') as FormControl;
-  }
+ 
 
 
   onSubmit() {

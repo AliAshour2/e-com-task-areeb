@@ -17,7 +17,7 @@
       id="name"
       label="Name"
       placeholder="Enter your name"
-      [control]="nameControl"
+      [control]="signupForm.controls.name"
     ></app-input-field>
 
     <app-input-field
@@ -25,7 +25,7 @@
       label="Email"
       type="email"
       placeholder="Enter your email"
-      [control]="emailControl"
+      [control]="signupForm.controls.email"
     ></app-input-field>
 
     <app-input-field
@@ -33,7 +33,7 @@
       label="Password"
       type="password"
       placeholder="Enter a strong password"
-      [control]="passwordControl"
+      [control]="signupForm.controls.password"
       [showPasswordToggle]="true"
     ></app-input-field>
 
@@ -42,7 +42,7 @@
       label="Confirm Password"
       type="password"
       placeholder="Re-enter your password"
-      [control]="rePasswordControl"
+      [control]="signupForm.controls.rePassword"
       [showPasswordToggle]="true"
     ></app-input-field>
 
@@ -51,7 +51,7 @@
       label="Phone"
       type="tel"
       placeholder="Enter your phone number"
-      [control]="phoneControl"
+      [control]="signupForm.controls.phone"
     ></app-input-field>
   </div>
 
