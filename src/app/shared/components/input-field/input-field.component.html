@@ -2,15 +2,15 @@
     <label [for]="id" class="text-sm font-medium text-gray-700">{{ label }}</label>
     <div class="relative">
       <input
-        [id]="id"
+        [id]="id()"
         [type]="inputType"
-        [placeholder]="placeholder"
-        [formControl]="control"
+        [placeholder]="placeholder()"
+        ([formControl)]="control"
         class="w-full rounded-lg border px-4 py-2 pr-10 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         [class.border-red-500]="hasError"
       />
   
-      @if (showPasswordToggle) {
+      @if (showPasswordToggle()) {
         <button
           type="button"
           (click)="togglePasswordVisibility()"
@@ -24,19 +24,19 @@
   
     @if (hasError) {
       <div class="text-sm text-red-600 mt-1">
-        @if (control.errors?.['required']) {
+        @if (control()?.errors?.['required']) {
           <span>This field is required</span>
         }
-        @else if (control.errors?.['email']) {
+        @else if (control()?.errors?.['email']) {
           <span>Invalid email format</span>
         }
-        @else if (control.errors?.['minlength']) {
-          <span>Minimum length is {{ control.errors?.['minlength']?.requiredLength }}</span>
+        @else if (control()?.errors?.['minlength']) {
+          <span>Minimum length is {{ control()?.errors?.['minlength']?.requiredLength }}</span>
         }
-        @else if (control.errors?.['pattern']) {
+        @else if (control()?.errors?.['pattern']) {
           <span>Invalid format</span>
         }
-        @else if (control.errors?.['notSame']) {
+        @else if (control()?.errors?.['notSame']) {
           <span>Passwords do not match</span>
         }
       </div>
