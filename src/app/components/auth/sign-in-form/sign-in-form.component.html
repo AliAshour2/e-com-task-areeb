@@ -7,16 +7,7 @@
         type="email"
         [control]="signInForm.controls.email"
       ></app-input-field>
-      @if (signInForm.controls.email.invalid && (signInForm.controls.email.dirty || signInForm.controls.email.touched)) {
-        <div class="text-red-500 text-sm">
-          @if (signInForm.controls.email.errors?.['required']) {
-            <div>Email is required.</div>
-          }
-          @if (signInForm.controls.email.errors?.['email']) {
-            <div>Enter a valid email.</div>
-          }
-        </div>
-      }
+      
     </div>
   
     <div>
@@ -28,16 +19,7 @@
         [control]="signInForm.controls.password"
         [showPasswordToggle]="true"
       ></app-input-field>
-      @if (signInForm.controls.password.invalid && (signInForm.controls.password.dirty || signInForm.controls.password.touched)) {
-        <div class="text-red-500 text-sm">
-          @if (signInForm.controls.password.errors?.['required']) {
-            <div>Password is required.</div>
-          }
-          @if (signInForm.controls.password.errors?.['minlength']) {
-            <div>Password must be at least 6 characters.</div>
-          }
-        </div>
-      }
+     
     </div>
   
     <button
