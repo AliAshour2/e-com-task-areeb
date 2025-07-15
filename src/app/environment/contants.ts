@@ -18,3 +18,4 @@ export const API_ENDPOINTS = {
 
   export const BaseUrl  = "https://ecommerce.routemisr.com/api/v1/"
   export const SignUpEndPoint = `${BaseUrl}auth/signup`
+  export const SingInEndPoint = `${BaseUrl}auth/signin`

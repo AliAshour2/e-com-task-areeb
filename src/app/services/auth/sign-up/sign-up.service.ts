@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SignUpData, SignUpResponse } from '../../../models/auth.model';
+import { SignUpData, AuthResponse } from '../../../models/auth.model';
 import { Observable, tap } from 'rxjs';
 import { BaseUrlFake, SignUpEndPoint } from '../../../environment/contants';
 
@@ -11,8 +11,8 @@ export class SignUpService {
 
   constructor(private http:HttpClient ) { }
 
-  signup(userData: SignUpData): Observable<SignUpResponse> {
-    return this.http.post<SignUpResponse>(SignUpEndPoint, userData).pipe(
+  signup(userData: SignUpData): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(SignUpEndPoint, userData).pipe(
       tap(response => {
         if (response.token) {
          localStorage.setItem('token',response.token)

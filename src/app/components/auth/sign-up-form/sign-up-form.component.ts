@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignUpService } from '../../../../services/auth/sign-up/sign-up.service';
-import { SignUpData } from '../../../../models/auth.model';
-import { InputFieldComponent } from '../../../../shared/components/input-field/input-field.component';
+import { SignUpService } from '../../../services/auth/sign-up/sign-up.service';
+import { SignUpData } from '../../../models/auth.model';
+import { InputFieldComponent } from '../../../shared/components/input-field/input-field.component';
 
 @Component({
   selector: 'app-sign-up-form',
