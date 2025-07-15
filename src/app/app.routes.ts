@@ -13,5 +13,4 @@ export const routes: Routes = [
     { path: 'cart', component: CartPageComponent },
     { path: 'sign-up-page', component: SignUpPageComponent },
     { path: 'sign-in-page', component: SignInPageComponent }
-
 ];
