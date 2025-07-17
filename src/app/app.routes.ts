@@ -4,6 +4,8 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
+import { authGuardsGuard } from './shared/guards/auth-guards.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -11,5 +13,6 @@ export const routes: Routes = [
     { path: 'developers', loadComponent: () => import('./pages/shop/shop.component').then(m => m.ShopComponent)},
     { path: 'cart', component: CartPageComponent },
     { path: 'sign-up-page',loadComponent : ()=> import('./pages/sign-up-page/sign-up-page.component').then(m=>m.SignUpPageComponent) },
-    { path: 'sign-in-page', component: SignInPageComponent }
+    { path: 'sign-in-page', component: SignInPageComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [authGuardsGuard] },
 ];

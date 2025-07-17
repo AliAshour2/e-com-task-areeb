@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignUpService } from '../../../services/auth/sign-up/sign-up.service';
+
 import { SignUpData } from '../../../models/auth.model';
 import { InputFieldComponent } from '../../../shared/components/input-field/input-field.component';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -17,7 +18,7 @@ export class SignUpFormComponent {
   errorMessage = signal<string>('');
 
 
-  constructor(private signUpService: SignUpService) {
+  constructor(private authService: AuthService) {
 
   }
 
@@ -65,10 +66,10 @@ export class SignUpFormComponent {
     };
 
 
-    this.signUpService.signup(signupData).subscribe({
+    this.authService.signup(signupData).subscribe({
       next: (response) => {
         this.isLoading.set(false);
-        localStorage.setItem('token' , response.token)
+        localStorage.setItem('token', response.token)
       },
       error: (error) => {
         this.isLoading.set(false);

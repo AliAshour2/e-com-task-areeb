@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignInService } from '../../../services/auth/sign-in/sign-in.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { SignInData } from '../../../models/auth.model';
 import { InputFieldComponent } from "../../../shared/components/input-field/input-field.component";
 
@@ -17,7 +17,7 @@ export class SignInFormComponent {
 
 
  
-  private signInService = inject(SignInService);
+  private authService = inject(AuthService);
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -44,9 +44,11 @@ export class SignInFormComponent {
       password: this.signInForm.value.password ?? ''
     };
 
-    this.signInService.signin(userData).subscribe({
+    this.authService.signin(userData).subscribe({
       next: (response) => {
         this.isSubmitting.set(false);
+        localStorage.setItem('token' , response.token)
+        
       },
 
       error: (error) => {
