@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Product } from '../../models/card.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate-pipe/truncate.pipe';
@@ -11,27 +11,25 @@ import { RoundedRatingPipe } from '../../pipes/rounded-rating/rounded-rating.pip
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent, AddToCartButtonComponent , RoundedRatingPipe],
+  imports: [CommonModule, CurrencyPipe, TruncatePipe, HoverDirective, ModalComponent, ProductDetailComponent, AddToCartButtonComponent, RoundedRatingPipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  @Input() product!: Product;
-  
-  isModalOpen = false;
+  product = input<Product>();
 
-  constructor(private cartService: CartService) {}
+  isModalOpen = signal<boolean>(false);
+
+  constructor(private cartService: CartService) { }
 
   addToCart() {
-    this.cartService.addToCart(this.product);
+    this.cartService.addToCart(this.product()!);
   }
-
 
   openProductModal() {
-    this.isModalOpen = true;
+    this.isModalOpen.set(true);
   }
-
   closeModal() {
-    this.isModalOpen = false;
+    this.isModalOpen.set(false);
   }
 }

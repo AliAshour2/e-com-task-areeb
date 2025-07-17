@@ -3,24 +3,24 @@
   (click)="openProductModal()">
   <!-- 🖼️ Product Image -->
   <div class="relative mb-4">
-    <img [src]="product.image" [alt]="product.title"
+    <img [src]="product()?.image" [alt]="product()?.title"
       class="h-40 mx-auto object-contain transition-transform duration-300 group-hover:scale-105" />
   </div>
 
   <!-- 📝 Product Title -->
   <h2 class="font-semibold text-base lg:text-lg mb-1 line-clamp-2">
-    {{ product.title | truncate:40 }}
+    {{ product()?.title ?? '' | truncate:40 }}
   </h2>
 
   <!-- 🧾 Description -->
   <p class="text-gray-500 text-sm mb-2 line-clamp-2">
-    {{ product.description | truncate:60 }}
+    {{ product()?.description ?? '' | truncate:60 }}
   </p>
 
   <!-- ⭐ Rating -->
   <div class="flex items-center gap-1 text-yellow-500 text-sm mb-3">
     @for (star of [1, 2, 3, 4, 5]; track star) {
-    @if (star <=  (product.rating.rate | roundedRating) ) { <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current"
+      @if (star <= ((product()?.rating?.rate ?? 0) | roundedRating)) { <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current"
       viewBox="0 0 20 20">
       <path
         d="M10 15l-5.878 3.09 1.122-6.545L.487 6.91l6.564-.954L10 0l2.949 5.956 6.564.954-4.757 4.635 1.122 6.545z" />
@@ -32,15 +32,15 @@
       </svg>
       }
       }
-      <span class="ml-1 text-xs text-gray-500">({{ product.rating.count }})</span>
+      <span class="ml-1 text-xs text-gray-500">({{ product()?.rating?.count ?? 0 }})</span>
   </div>
 
   <!-- 💵 Price + 🏷️ Category -->
   <div class="flex items-center justify-between mt-auto">
     <span class="text-green-600 font-bold text-sm lg:text-base">
-      {{ product.price | currency:'$' }}
+      {{ product()?.price | currency:'$' }}
     </span>
-    <span class="text-xs text-gray-400 capitalize">{{ product.category }}</span>
+    <span class="text-xs text-gray-400 capitalize">{{ product()?.category }}</span>
   </div>
 
   <app-add-to-cart-button (addToCard)="addToCart()"></app-add-to-cart-button>
@@ -49,6 +49,6 @@
 
 
 <!-- Product Detail Modal -->
-<app-modal [showClose]="true"  [isOpen]="isModalOpen" [title]="product.title" [showClose]="true" (close)="closeModal()">
-  <app-product-detail [product]="product" (closeModal)="closeModal()"></app-product-detail>
+<app-modal [showClose]="true"   [isOpen]="isModalOpen()" [title]="product()?.title" [showClose]="true" (close)="closeModal()">
+  <app-product-detail [product]="product()" (closeModal)="closeModal()"></app-product-detail>
 </app-modal>

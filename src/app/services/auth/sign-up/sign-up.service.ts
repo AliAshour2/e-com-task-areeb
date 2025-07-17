@@ -12,12 +12,6 @@ export class SignUpService {
   constructor(private http:HttpClient ) { }
 
   signup(userData: SignUpData): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(SignUpEndPoint, userData).pipe(
-      tap(response => {
-        if (response.token) {
-         localStorage.setItem('token',response.token)
-        }
-      })
-    );
+    return this.http.post<AuthResponse>(SignUpEndPoint, userData);
   } 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpService } from '../../../services/auth/sign-up/sign-up.service';
 import { SignUpData } from '../../../models/auth.model';
@@ -6,15 +6,15 @@ import { InputFieldComponent } from '../../../shared/components/input-field/inpu
 
 @Component({
   selector: 'app-sign-up-form',
-  imports: [ReactiveFormsModule,InputFieldComponent] ,
+  imports: [ReactiveFormsModule, InputFieldComponent],
   templateUrl: './sign-up-form.component.html',
   styleUrl: './sign-up-form.component.css',
-  standalone : true 
+  standalone: true
 })
 export class SignUpFormComponent {
 
-  isLoading = false;
-  errorMessage = '';
+  isLoading = signal<boolean>(false);
+  errorMessage = signal<string>('');
 
 
   constructor(private signUpService: SignUpService) {
@@ -43,7 +43,7 @@ export class SignUpFormComponent {
     return password === rePassword ? null : { notSame: true };
   }
 
- 
+
 
 
   onSubmit() {
@@ -51,8 +51,8 @@ export class SignUpFormComponent {
       return;
     }
 
-    this.isLoading = true;
-    this.errorMessage = '';
+    this.isLoading.set(true);
+    this.errorMessage.set('');
 
 
 
@@ -67,11 +67,12 @@ export class SignUpFormComponent {
 
     this.signUpService.signup(signupData).subscribe({
       next: (response) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
+        localStorage.setItem('token' , response.token)
       },
       error: (error) => {
-        this.isLoading = false;
-        this.errorMessage = error.error?.message || 'Signup failed. Please try again.';
+        this.isLoading.set(false);
+        this.errorMessage.set(error.error?.message || 'Signup failed. Please try again.');
       }
     })
   }

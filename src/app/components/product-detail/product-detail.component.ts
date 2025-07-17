@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input, output } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Product } from '../../models/card.model';
 import { CartService } from '../../services/cart/cart.service';
@@ -13,13 +13,13 @@ import { RoundedRatingPipe } from '../../pipes/rounded-rating/rounded-rating.pip
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
-  @Input() product!: Product;
-  @Output() closeModal = new EventEmitter<void>();
+  product = input<Product>();
+  closeModal = output<void>();
   
   constructor(private cartService: CartService) {}
   
   addToCart() {
-    this.cartService.addToCart(this.product);
+    this.cartService.addToCart(this.product()!);
     this.closeModal.emit();
   }
 

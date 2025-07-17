@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Product } from '../../models/card.model';
 import { ProductsService } from '../../services/products/products.service';
 import { ProductCardComponent } from "../../components/product-card/product-card.component";
@@ -28,8 +28,8 @@ import { ProductsFilterService } from '../../services/products-filter/products-f
 })
 export class ProductsComponent {
     products: Product[]= [];
-    isLoading = true ;
-    error: string | null = null; 
+    isLoading =signal<boolean>(true) ;
+    error=signal< string | null >(null); 
 
     selectedCategory = 'all';
     selectedPriceRange = 'all';
@@ -71,17 +71,17 @@ export class ProductsComponent {
     ){}
 
     ngOnInit():void {
-      this.isLoading = true ;
-      this.error=null;
+      this.isLoading.set(true) 
+      this.error.set(null);
 
       this.productsService.getProducts().subscribe({
         next :(products)=>{
           this.products =products;
-          this.isLoading = false; 
+          this.isLoading.set(false) 
         }, 
         error :(err)=>{
-          this.error = 'Failed to load products. Please try again later.';
-          this.isLoading = false;
+          this.error.set('Failed to load products. Please try again later.');
+          this.isLoading.set(false);
           console.error(err);
         }
       })
