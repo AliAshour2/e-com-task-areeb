@@ -8,7 +8,7 @@ import { authGuardsGuard } from './shared/guards/auth-guards.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 import { ProductResolver } from './resolvers/product.resolver';
-import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },

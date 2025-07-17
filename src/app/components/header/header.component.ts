@@ -3,9 +3,10 @@ import { SearchService } from '../../shared/services/search/search.service';
 import { CartService } from '../../services/cart/cart.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -15,11 +16,15 @@ export class HeaderComponent {
   constructor(
     private searchService: SearchService,
     public cartService: CartService,
-    private router: Router
+    public authService: AuthService
   ) {}
 
   get cartItemsCount() {
     return this.cartService.cartItems$().length;
+  }
+
+  get isAuthenticated() {
+    return this.authService.isLoggedIn();
   }
 
   onSearchChange(value: string) {
@@ -27,9 +32,9 @@ export class HeaderComponent {
     this.searchService.updateSearchQuery(this.searchQuery);
   }
 
-  goToCart() {
-    this.router.navigate(['/cart']);
-  }
+  // goToCart() {
+  //   this.router.navigate(['/cart']);
+  // }
 
 
   //  // @Input() searchQuery = '';
