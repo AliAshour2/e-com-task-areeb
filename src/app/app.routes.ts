@@ -7,12 +7,20 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { authGuardsGuard } from './shared/guards/auth-guards.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
+import { ProductResolver } from './resolvers/product.resolver';
+import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
+
 export const routes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full' },
     { path: 'products',  loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent)},
     { path: 'developers', loadComponent: () => import('./pages/shop/shop.component').then(m => m.ShopComponent)},
     { path: 'cart', component: CartPageComponent },
     { path: 'sign-up-page',loadComponent : ()=> import('./pages/sign-up-page/sign-up-page.component').then(m=>m.SignUpPageComponent) },
+    {
+        path: 'product/:id',
+        loadComponent : ()=> import('./pages/product-details-page/product-details-page.component').then(m=>m.ProductDetailsPageComponent) ,
+        resolve: { product: ProductResolver }
+      },
     { path: 'sign-in-page', component: SignInPageComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [authGuardsGuard] },
 ];

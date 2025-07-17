@@ -8,6 +8,7 @@ import { ModalComponent } from '../../shared/components/modal/modal/modal.compon
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { AddToCartButtonComponent } from "../../shared/components/add-to-cart-button/add-to-cart-button.component";
 import { RoundedRatingPipe } from '../../pipes/rounded-rating/rounded-rating.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -20,7 +21,7 @@ export class ProductCardComponent {
 
   isModalOpen = signal<boolean>(false);
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   addToCart() {
     this.cartService.addToCart(this.product()!);
@@ -31,5 +32,11 @@ export class ProductCardComponent {
   }
   closeModal() {
     this.isModalOpen.set(false);
+  }
+
+  goToDetails() {
+    if (this.product()) {
+      this.router.navigate(['/product', this.product()!.id]);
+    }
   }
 }

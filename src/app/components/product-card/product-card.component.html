@@ -43,7 +43,10 @@
     <span class="text-xs text-gray-400 capitalize">{{ product()?.category }}</span>
   </div>
 
-  <app-add-to-cart-button (addToCard)="addToCart()"></app-add-to-cart-button>
+  <div class="flex gap-x-2 ">
+    <app-add-to-cart-button (addToCard)="addToCart()"></app-add-to-cart-button>
+    <button (click)="goToDetails()" class="bg-gray-200   rounded text-sm hover:bg-gray-300">Details</button>
+  </div>
 </div>
 
 
