@@ -3,7 +3,7 @@
   (click)="openProductModal()">
   <!-- 🖼️ Product Image -->
   <div class="relative mb-4">
-    <img [src]="product()?.image" [alt]="product()?.title"
+    <img [src]="product()?.imageCover || product()?.image" [alt]="product()?.title"
       class="h-40 mx-auto object-contain transition-transform duration-300 group-hover:scale-105" />
   </div>
 
@@ -20,7 +20,8 @@
   <!-- ⭐ Rating -->
   <div class="flex items-center gap-1 text-yellow-500 text-sm mb-3">
     @for (star of [1, 2, 3, 4, 5]; track star) {
-      @if (star <= ((product()?.rating?.rate ?? 0) | roundedRating)) { <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current"
+      @if (star <= ((product()?.ratingsAverage || product()?.rating?.rate || 0) | roundedRating)) { 
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current"
       viewBox="0 0 20 20">
       <path
         d="M10 15l-5.878 3.09 1.122-6.545L.487 6.91l6.564-.954L10 0l2.949 5.956 6.564.954-4.757 4.635 1.122 6.545z" />
@@ -32,14 +33,25 @@
       </svg>
       }
       }
-      <span class="ml-1 text-xs text-gray-500">({{ product()?.rating?.count ?? 0 }})</span>
+      <span class="ml-1 text-xs text-gray-500">({{ product()?.ratingsQuantity || product()?.rating?.count || 0 }})</span>
   </div>
 
   <!-- 💵 Price + 🏷️ Category -->
   <div class="flex items-center justify-between mt-auto">
-    <span class="text-green-600 font-bold text-sm lg:text-base">
-      {{ product()?.price | currency:'$' }}
-    </span>
+    <div class="flex flex-col">
+      @if (product()?.priceAfterDiscount && product()?.priceAfterDiscount < product()?.price) {
+        <span class="text-green-600 font-bold text-sm lg:text-base">
+          {{ product()?.priceAfterDiscount | currency:'$' }}
+        </span>
+        <span class="text-gray-400 line-through text-xs">
+          {{ product()?.price | currency:'$' }}
+        </span>
+      } @else {
+        <span class="text-green-600 font-bold text-sm lg:text-base">
+          {{ product()?.price | currency:'$' }}
+        </span>
+      }
+    </div>
     <span class="text-xs text-gray-400 capitalize">{{ product()?.category }}</span>
   </div>
 

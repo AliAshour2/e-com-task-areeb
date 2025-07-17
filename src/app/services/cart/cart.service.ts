@@ -68,7 +68,7 @@ export class CartService {
 
   removeFromCart(productId: number): void {
     const currentItems = this.cartItems();
-    const index = currentItems.findIndex(item => item.product.id === productId);
+    const index = currentItems.findIndex(item => item.product.id == productId);
     
     if (index > -1) {
       const updated = [...currentItems];
@@ -76,15 +76,15 @@ export class CartService {
         updated[index] = { ...updated[index], quantity: updated[index].quantity - 1 };
         this.cartItems.set(updated);
       } else {
-        this.cartItems.set(updated.filter(item => item.product.id !== productId));
+        this.cartItems.set(updated.filter(item => item.product.id != productId));
         this.toastService.showSuccess('Item removed from cart');
       }
     }
   }
 
   removeAllOfProduct(productId: number): void {
-    const item = this.cartItems().find(item => item.product.id === productId);
-    this.cartItems.set(this.cartItems().filter(item => item.product.id !== productId));
+    const item = this.cartItems().find(item => item.product.id == productId);
+    this.cartItems.set(this.cartItems().filter(item => item.product.id != productId));
     if (item) {
       this.toastService.showSuccess(`${item.product.title} removed from cart`);
     }
@@ -100,11 +100,11 @@ export class CartService {
   }
 
   isInCart(productId: number): boolean {
-    return this.cartItems().some(item => item.product.id === productId);
+    return this.cartItems().some(item => item.product.id == productId);
   }
 
   getItemQuantity(productId: number): number {
-    const item = this.cartItems().find(item => item.product.id === productId);
+    const item = this.cartItems().find(item => item.product.id == productId);
     return item?.quantity || 0;
   }
 }

@@ -2,13 +2,35 @@ export interface Product {
   id: number;
   title: string;
   price: number;
+  priceAfterDiscount?: number;
   description: string;
   category: string;
   image: string;
+  imageCover: string;
+  images?: string[];
+  brand?: {
+    _id: string;
+    name: string;
+    slug: string;
+    image: string;
+  };
+  subcategory?: Array<{
+    _id: string;
+    name: string;
+    slug: string;
+    category: string;
+  }>;
+  quantity?: number;
+  sold?: number;
   rating: {
     rate: number;
     count: number;
   };
+  ratingsAverage?: number;
+  ratingsQuantity?: number;
+  slug?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 

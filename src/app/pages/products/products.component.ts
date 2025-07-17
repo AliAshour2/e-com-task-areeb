@@ -43,17 +43,16 @@ export class ProductsComponent implements OnInit {
 
     categoryOptions = [
       { value: 'all', label: 'All Categories' },
-      { value: "men's clothing", label: "Men's Clothing" },
-      { value: "women's clothing", label: "Women's Clothing" },
-      { value: 'jewelery', label: 'Jewelery' },
-      { value: 'electronics', label: 'Electronics' }
+      { value: "Men's Fashion", label: "Men's Fashion" },
+      { value: "Women's Fashion", label: "Women's Fashion" },
+      { value: 'Electronics', label: 'Electronics' }
     ];
     priceOptions = [
       { value: 'all', label: 'All Prices' },
-      { value: '0-25', label: '$0 - $25' },
-      { value: '25-50', label: '$25 - $50' },
-      { value: '50-100', label: '$50 - $100' },
-      { value: '100-1000', label: '$100+' }
+      { value: '0-500', label: '$0 - $500' },
+      { value: '500-1000', label: '$500 - $1000' },
+      { value: '1000-5000', label: '$1000 - $5000' },
+      { value: '5000-50000', label: '$5000+' }
     ];
     ratingOptions = [
       { value: 'all', label: 'All Ratings' },
@@ -85,7 +84,7 @@ export class ProductsComponent implements OnInit {
       }
 
       if (this.selectedMinRating !== 'all') {
-        filtered = filtered.filter(p => p.rating.rate >= Number(this.selectedMinRating));
+        filtered = filtered.filter(p => (p.ratingsAverage || p.rating.rate) >= Number(this.selectedMinRating));
       }
 
       // Apply sorting
@@ -94,8 +93,8 @@ export class ProductsComponent implements OnInit {
           switch (this.selectedSort) {
             case 'priceAsc': return a.price - b.price;
             case 'priceDesc': return b.price - a.price;
-            case 'ratingAsc': return a.rating.rate - b.rating.rate;
-            case 'ratingDesc': return b.rating.rate - a.rating.rate;
+            case 'ratingAsc': return (a.ratingsAverage || a.rating.rate) - (b.ratingsAverage || b.rating.rate);
+            case 'ratingDesc': return (b.ratingsAverage || b.rating.rate) - (a.ratingsAverage || a.rating.rate);
             default: return 0;
           }
         });
