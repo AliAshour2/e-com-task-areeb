@@ -34,6 +34,9 @@
           [defaultValue]="'all'" 
           [label]="'Price Range'"
           [(selectedValue)]="selectedPriceRange" 
+          (selectedValueChange)="onPriceRangeChange($event)"
+        ></app-selectfilter>
+
         <app-selectfilter 
           [options]="ratingOptions" 
           [defaultValue]="'all'" 
@@ -41,15 +44,13 @@
           [(selectedValue)]="selectedMinRating" 
           (selectedValueChange)="onMinRatingChange($event)"
         ></app-selectfilter>
-          (selectedValueChange)="onPriceRangeChange($event)"
+
         <app-selectfilter 
           [options]="sortOptions" 
           [defaultValue]="'default'" 
           [label]="'Sort By'"
           [(selectedValue)]="selectedSort" 
           (selectedValueChange)="onSortChange($event)"
-        ></app-selectfilter>
-      </div>
         ></app-selectfilter>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @for (product of filteredProducts(); track product.id) {
