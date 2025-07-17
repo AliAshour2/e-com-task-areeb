@@ -34,7 +34,10 @@ export class ProductCardComponent {
     this.isModalOpen.set(false);
   }
 
-  goToDetails() {
+  goToDetails(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     if (this.product()) {
       this.router.navigate(['/product', this.product()!.id]);
     }
