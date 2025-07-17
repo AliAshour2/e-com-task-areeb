@@ -7,16 +7,21 @@
     </div>
     @if (cartItems().length > 0) {
 
-    @for (item of cartItems(); track item.id) {
+    @for (item of cartItems(); track item.product.id) {
     <div class="flex items-center justify-between bg-white rounded shadow p-4 mb-3">
         <div class="flex items-center gap-4">
-            <img [src]="item.image" [alt]="item.title" class="h-16 w-16 object-contain rounded" />
+            <img [src]="item.product.image" [alt]="item.product.title" class="h-16 w-16 object-contain rounded" />
             <div>
-                <div class="font-semibold">{{ item.title }}</div>
-                <div class="text-gray-600">{{ item.price | currency:'$' }}</div>
+                <div class="font-semibold">{{ item.product.title }}</div>
+                <div class="text-gray-600">{{ item.product.price | currency:'$' }}</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <button (click)="cartService.removeFromCart(item.product.id)" class="bg-gray-200 px-2 rounded">-</button>
+                    <span class="font-semibold">{{ item.quantity }}</span>
+                    <button (click)="cartService.addToCart(item.product)" class="bg-gray-200 px-2 rounded">+</button>
+                </div>
             </div>
         </div>
-        <button (click)="cartService.removeFromCart(item.id)"
+        <button (click)="cartService.removeAllOfProduct(item.product.id)"
             class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Remove</button>
     </div>
     }
