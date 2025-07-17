@@ -17,10 +17,7 @@ export class SignUpFormComponent {
 
   isLoading = signal<boolean>(false);
   errorMessage = signal<string>('');
-
   toast = inject(ToastService);
-
-
   constructor(private authService: AuthService) {
 
   }
@@ -42,13 +39,26 @@ export class SignUpFormComponent {
 
   checkPasswords(control: AbstractControl) {
     const group = control as FormGroup;
-    const password = group.get('password')?.value;
-    const rePassword = group.get('rePassword')?.value;
-    return password === rePassword ? null : { notSame: true };
+    const password = group.get('password');
+    const rePassword = group.get('rePassword');
+  
+    if (password && rePassword && password.value !== rePassword.value) {
+      rePassword.setErrors({ ...rePassword.errors, notSame: true });
+      return { notSame: true };
+    } else {
+      if (rePassword?.hasError('notSame')) {
+        const errors = { ...rePassword.errors };
+        delete errors['notSame'];
+        if (Object.keys(errors).length === 0) {
+          rePassword.setErrors(null);
+        } else {
+          rePassword.setErrors(errors);
+        }
+      }
+      return null;
+    }
   }
-
-
-
+  
 
   onSubmit() {
     if (this.signupForm.invalid) {

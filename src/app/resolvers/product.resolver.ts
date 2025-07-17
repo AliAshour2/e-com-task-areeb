@@ -10,7 +10,6 @@ export class ProductResolver implements Resolve<Product> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
     const id = route.paramMap.get('id')!;
-    console.log("resolvers works now");
     return this.productsService.getProduct(id);
   }
 }
