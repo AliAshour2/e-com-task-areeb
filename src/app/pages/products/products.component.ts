@@ -1,8 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit, ChangeDetectionStrategy, computed } from '@angular/core';
 import { Product } from '../../models/card.model';
 import { ProductsService } from '../../services/products/products.service';
 import { ProductCardComponent } from "../../components/product-card/product-card.component";
 import { CardSkeletonComponent } from "../../shared/components/skeletons/card-skeleton/card-skeleton.component";
+import { LoadingSpinnerComponent } from "../../shared/components/loading-spinner/loading-spinner.component";
+import { ErrorHandlerService } from '../../shared/services/error-handler.service';
+import { LoadingService } from '../../shared/services/loading.service';
 
 import { SelectfilterComponent } from '../../shared/components/select/selectfilter/selectfilter.component';
 import { CategoryFilterPipe } from '../../pipes/category-filter/category-filter.pipe';
@@ -16,6 +19,7 @@ import { ProductsFilterService } from '../../services/products-filter/products-f
   imports: [
     ProductCardComponent,
     CardSkeletonComponent,
+    LoadingSpinnerComponent,
     CategoryFilterPipe,
     PriceFilterPipe,
     RatingFilterPipe,
@@ -25,11 +29,12 @@ import { ProductsFilterService } from '../../services/products-filter/products-f
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   standalone : true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductsComponent {
-    products: Product[]= [];
-    isLoading =signal<boolean>(true) ;
-    error=signal< string | null >(null); 
+export class ProductsComponent implements OnInit {
+    products = signal<Product[]>([]);
+    isLoading = signal<boolean>(false);
+    error = signal<string | null>(null);
 
     selectedCategory = 'all';
     selectedPriceRange = 'all';
@@ -65,26 +70,68 @@ export class ProductsComponent {
       { value: 'ratingAsc', label: 'Rating: Low to High' }
     ];
 
+    // Computed properties for better performance
+    filteredProducts = computed(() => {
+      let filtered = [...this.products()];
+
+      // Apply filters
+      if (this.selectedCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === this.selectedCategory);
+      }
+
+      if (this.selectedPriceRange !== 'all') {
+        const [min, max] = this.selectedPriceRange.split('-').map(Number);
+        filtered = filtered.filter(p => p.price >= (min || 0) && p.price <= (max || Infinity));
+      }
+
+      if (this.selectedMinRating !== 'all') {
+        filtered = filtered.filter(p => p.rating.rate >= Number(this.selectedMinRating));
+      }
+
+      // Apply sorting
+      if (this.selectedSort !== 'default') {
+        filtered.sort((a, b) => {
+          switch (this.selectedSort) {
+            case 'priceAsc': return a.price - b.price;
+            case 'priceDesc': return b.price - a.price;
+            case 'ratingAsc': return a.rating.rate - b.rating.rate;
+            case 'ratingDesc': return b.rating.rate - a.rating.rate;
+            default: return 0;
+          }
+        });
+      }
+
+      return filtered;
+    });
     constructor(
       private productsService : ProductsService,
-      private filterService: ProductsFilterService
+      private filterService: ProductsFilterService,
+      private errorHandler: ErrorHandlerService,
+      public loadingService: LoadingService
     ){}
 
     ngOnInit():void {
+      this.loadProducts();
+    }
+
+    private loadProducts(): void {
       this.isLoading.set(true) 
       this.error.set(null);
 
       this.productsService.getProducts().subscribe({
         next :(products)=>{
-          this.products =products;
+          this.products.set(products);
           this.isLoading.set(false) 
         }, 
         error :(err)=>{
-          this.error.set('Failed to load products. Please try again later.');
+          this.error.set(err.message || 'Failed to load products. Please try again later.');
           this.isLoading.set(false);
-          console.error(err);
         }
       })
+    }
+
+    retryLoadProducts(): void {
+      this.loadProducts();
     }
 
     onCategoryChange(category: string) {

@@ -1,43 +1,72 @@
 <div class="container mx-auto px-xs py-sm">
     <h1 class="text-3xl font-bold mb-xl mt-lg">Products</h1>
 
-    @if(error()){
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{error()}}</div>
+    @if(error()) {
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 flex items-center justify-between">
+        <span>{{ error() }}</span>
+        <button 
+          (click)="retryLoadProducts()" 
+          class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors"
+        >
+          Retry
+        </button>
+      </div>
     }
+
     @if(isLoading()) {
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @for (item of [1,2,3,4,5,6,7,8]; track $index) {
-        <app-card-skeleton></app-card-skeleton>
+          <app-card-skeleton></app-card-skeleton>
         }
-    </div>
+      </div>
+    } @else if (!error()) {
+      <div class="flex gap-x-xs mb-lg">
+        <app-selectfilter 
+          [options]="categoryOptions" 
+          [defaultValue]="'all'" 
+          [label]="'Category'"
+          [(selectedValue)]="selectedCategory" 
+          (selectedValueChange)="onCategoryChange($event)"
+        ></app-selectfilter>
 
-    }@else {
-
-    <div class="flex gap-x-xs mb-lg">
-        <app-selectfilter [options]="categoryOptions" [defaultValue]="'all'" [label]="'Category'"
-        [(selectedValue)]="selectedCategory" (selectedValueChange)="onCategoryChange($event)">
-    </app-selectfilter>
-
-    <app-selectfilter [options]="priceOptions" [defaultValue]="'all'" [label]="'Price Range'"
-        [(selectedValue)]="selectedPriceRange" (selectedValueChange)="onPriceRangeChange($event)">
-    </app-selectfilter>
-
-    <app-selectfilter [options]="ratingOptions" [defaultValue]="'all'" [label]="'Minimum Rating'"
-        [(selectedValue)]="selectedMinRating" (selectedValueChange)="onMinRatingChange($event)">
-    </app-selectfilter>
-
-    <app-selectfilter [options]="sortOptions" [defaultValue]="'default'" [label]="'Sort By'"
-        [(selectedValue)]="selectedSort" (selectedValueChange)="onSortChange($event)">
-    </app-selectfilter>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        @for (product of (products | categoryFilter:selectedCategory
-        | priceFilter:selectedPriceRange
-        | ratingFilter:selectedMinRating
-        | sortFilter:selectedSort ); track product.id) {
-        <app-product-card [product]="product"></app-product-card>
+        <app-selectfilter 
+          [options]="priceOptions" 
+          [defaultValue]="'all'" 
+          [label]="'Price Range'"
+          [(selectedValue)]="selectedPriceRange" 
+        <app-selectfilter 
+          [options]="ratingOptions" 
+          [defaultValue]="'all'" 
+          [label]="'Minimum Rating'"
+          [(selectedValue)]="selectedMinRating" 
+          (selectedValueChange)="onMinRatingChange($event)"
+        ></app-selectfilter>
+          (selectedValueChange)="onPriceRangeChange($event)"
+        <app-selectfilter 
+          [options]="sortOptions" 
+          [defaultValue]="'default'" 
+          [label]="'Sort By'"
+          [(selectedValue)]="selectedSort" 
+          (selectedValueChange)="onSortChange($event)"
+        ></app-selectfilter>
+      </div>
+        ></app-selectfilter>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @for (product of filteredProducts(); track product.id) {
+          <app-product-card [product]="product"></app-product-card>
         }
-    </div>
+      </div>
+
+      @if (filteredProducts().length === 0 && products().length > 0) {
+        <div class="text-center py-8">
+          <p class="text-gray-500">No products match your current filters.</p>
+          <button 
+            (click)="selectedCategory = 'all'; selectedPriceRange = 'all'; selectedMinRating = 'all'; selectedSort = 'default'"
+            class="mt-2 text-blue-600 hover:text-blue-800"
+          >
+            Clear all filters
+          </button>
+        </div>
+      }
     }
 </div>
