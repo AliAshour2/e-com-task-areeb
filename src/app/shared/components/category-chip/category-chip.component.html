@@ -1,0 +1,10 @@
+<span [ngClass]="{
+'bg-purple-100 text-purple-700': role() === 'Frontend Developer',
+    'bg-blue-100 text-blue-700': role() === 'Backend Developer',
+    'bg-green-100 text-green-700': role() === 'UI/UX Designer',
+    'bg-orange-100 text-orange-700': role() === 'DevOps Engineer',
+    'bg-red-100 text-red-700': role() === 'QA Engineer',
+    'bg-indigo-100 text-indigo-700': role() === 'Project Manager',
+}" class="inline-block mt-1 px-2 py-0.5 text-xs font-medium rounded-full">
+  {{ role() }}
+</span>

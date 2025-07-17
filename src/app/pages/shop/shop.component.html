@@ -1,0 +1,55 @@
+<div class="p-6 font-work">
+  <h1 class="text-2xl font-bold mb-4">Shop</h1>
+  <button 
+  (click)="openAddModal()" 
+  class="bg-blue-600 text-white px-4 py-2 rounded mb-4"
+>
+  Add Developer
+</button>
+  <app-modal 
+  [isOpen]="showAddModal"
+  title="Add Developer"
+  (close)="closeAddModal()"
+>
+  <app-add-developer-form
+    (submit)="onAddDeveloper($event)"
+    (cancel)="closeAddModal()"
+  ></app-add-developer-form>
+</app-modal>
+
+  <div class="mb-6 flex flex-wrap gap-3">
+    <!-- <select
+      class="rounded-3xl font-sans text-sm fw-medium; font:sans border border-gray-300 bg-surface text-primary px-2 py-2 transition-colors duration-200 outline-none"
+      [(ngModel)]="selectedSort"
+    >
+      <option value="default">Sort by</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+    </select> -->
+
+    <app-selectfilter [(selectedValue)]="selectedSort" [options]="sortOptions"   [defaultValue]="'default'"
+      [label]="'Sort by'">
+
+    </app-selectfilter>
+
+    <select
+      class="rounded-3xl font-sans text-sm fw-medium; font:sans border border-gray-300 bg-surface text-primary px-2 py-2 transition-colors duration-200 outline-none"
+      [(ngModel)]="selectedLevel"
+    >
+      <option value="all">All Levels</option>
+      <option value="Junior">Junior</option>
+      <option value="Mid">Mid-Level</option>
+      <option value="Senior">Senior</option>
+      <option value="Lead">Lead</option>
+    </select>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+    @for(developer of filteredDevelopers; track developer.name){
+    <app-developer-card
+      [developer]="developer"
+      (contact)="onContact(developer)"
+    ></app-developer-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<form (ngSubmit)="onSubmit()" class="space-y-6">
+    <div class="space-y-2">
+      <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        [(ngModel)]="developerForm.name" 
+        required 
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+        placeholder="Enter developer name"
+      >
+    </div>
+  
+    <div class="space-y-2">
+      <label for="role" class="block text-sm font-medium text-gray-700">Role *</label>
+      <input 
+        type="text" 
+        id="role" 
+        name="role" 
+        [(ngModel)]="developerForm.role" 
+        required 
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+        placeholder="e.g., Frontend Developer"
+      >
+    </div>
+  
+    <div class="space-y-2">
+      <label for="level" class="block text-sm font-medium text-gray-700">Level *</label>
+      <select 
+        id="level" 
+        name="level" 
+        [(ngModel)]="developerForm.level" 
+        required 
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white"
+      >
+        @for(level of levels; track level.value) {
+          <option [value]="level.value">{{ level.label }}</option>
+        }
+      </select>
+    </div>
+  
+    <div class="space-y-2">
+      <label for="salary" class="block text-sm font-medium text-gray-700">Salary *</label>
+      <input 
+        type="number" 
+        id="salary" 
+        name="salary" 
+        [(ngModel)]="developerForm.salary" 
+        required 
+        min="0"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+        placeholder="Enter salary amount"
+      >
+    </div>
+  
+    <div class="space-y-2">
+      <label for="description" class="block text-sm font-medium text-gray-700">Description *</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        [(ngModel)]="developerForm.description" 
+        required 
+        rows="3"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-vertical min-h-[80px]"
+        placeholder="Enter developer description"
+      ></textarea>
+    </div>
+  
+    <div class="flex gap-3 justify-end pt-6 border-t border-gray-200">
+      <button 
+        type="button" 
+        (click)="onCancel()" 
+        class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200"
+      >
+        Cancel
+      </button>
+      <button 
+        type="submit" 
+        class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+      >
+        Add Developer
+      </button>
+    </div>
+  </form>

@@ -1,0 +1,16 @@
+/* Additional custom styles for product detail component */
+.product-image {
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
+}
+
+.action-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.action-button:active {
+  transform: translateY(1px);
+} 

@@ -1,0 +1,60 @@
+<div class="mx-auto bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+  <!-- Top Row: Avatar, Name+Category, Status+Menu -->
+  <div class="flex items-start justify-between mb-4">
+    <!-- Avatar + Name/Category -->
+    <div class="flex items-center gap-3 flex-1 min-w-0">
+      <div
+        class="w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0"
+      >
+        <img
+          class="w-full h-full object-cover"
+          src="{{ developer.image }}"
+          alt="{{ developer.name }}"
+        />
+      </div>
+      <div class="min-w-0">
+        <h2
+          class="text-lg font-semibold text-gray-900 line-clamp-1 overflow-hidden"
+        >
+          {{ developer.name }}
+        </h2>
+        <app-category-chip [role]="developer.role"></app-category-chip>
+      </div>
+    </div>
+    <!-- Status + Menu -->
+    <div class="flex flex-col items-end gap-2 ml-2">
+      <button
+        class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors"
+        aria-label="More options"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 text-gray-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <circle cx="12" cy="6" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="18" r="1.5" />
+        </svg>
+      </button>
+      <app-status-badge [status]="status"></app-status-badge>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+    {{ developer.description }}
+  </p>
+
+  <!-- Bottom Row: Contact Button + Profile Icon -->
+  <div class="flex items-center gap-2 mt-6">
+    <app-main-toggle-button
+      class="w-full"
+      [status]="status"
+      (statusChange)="onContactStatusChange($event)"
+    ></app-main-toggle-button>
+    <app-contact-button></app-contact-button>
+  </div>
+</div>

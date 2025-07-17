@@ -1,0 +1,39 @@
+<aside class="w-64 min-h-screen bg-main px-lg py-md font-sans text-primary p-base">
+  <h1 class="mb-lg leading-lg font-medium text-base align-items-center">
+    Fashion Hub
+  </h1>
+
+  <nav class="flex flex-col gap-sm">
+    <!-- Home -->
+    <a routerLink="/products"
+      class="flex items-center gap-sm py-sm px-sm text-sm fw-medium rounded-full hover:bg-surface">
+      <app-home-icon class="mr-2" />
+      <span>Home</span>
+    </a>
+
+    <!-- Shop (Active) -->
+    <a routerLink="/developers"
+      class="flex items-center gap-sm py-sm px-sm text-sm fw-medium rounded-full hover:bg-surface">
+      <app-shop-icon class="mr-2" />
+      <span>Shop</span>
+    </a>
+
+    <!-- About -->
+    <a routerLink="/cart" class="flex items-center gap-sm py-sm px-sm text-sm fw-medium rounded-full hover:bg-surface">
+      <app-about-icon class="mr-2" />
+      <span>About</span>
+    </a>
+
+    <!-- Contact -->
+    <a routerLink="/content" class="flex items-center gap-sm py-sm px-sm text-sm fw-medium rounded-full hover:bg-surface">
+      <app-contact-icon class="mr-2" />
+      <span>Content</span>
+    </a>
+
+    <!-- Blog -->
+    <a routerLink="/blog" class="flex items-center gap-sm py-sm px-sm text-sm fw-medium rounded-full hover:bg-surface">
+      <app-blog-icon class="mr-2" />
+      <span>Blog</span>
+    </a>
+  </nav>
+</aside>
