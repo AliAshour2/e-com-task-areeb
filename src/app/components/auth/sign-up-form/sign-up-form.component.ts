@@ -5,6 +5,7 @@ import { SignUpData } from '../../../models/auth.model';
 import { InputFieldComponent } from '../../../shared/components/input-field/input-field.component';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -18,6 +19,7 @@ export class SignUpFormComponent {
   isLoading = signal<boolean>(false);
   errorMessage = signal<string>('');
   toast = inject(ToastService);
+  private router = inject(Router);
   constructor(private authService: AuthService) {
 
   }
@@ -84,6 +86,7 @@ export class SignUpFormComponent {
         this.isLoading.set(false);
         localStorage.setItem('token', response.token);
         this.toast.showSuccess("Sign up success");
+        this.router.navigate(['/']);
       },
       error: (error) => {
         this.isLoading.set(false);

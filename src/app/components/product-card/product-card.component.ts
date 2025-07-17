@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Product } from '../../models/card.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate-pipe/truncate.pipe';
@@ -9,6 +9,8 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 import { AddToCartButtonComponent } from "../../shared/components/add-to-cart-button/add-to-cart-button.component";
 import { RoundedRatingPipe } from '../../pipes/rounded-rating/rounded-rating.pipe';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-product-card',
@@ -22,8 +24,14 @@ export class ProductCardComponent {
   isModalOpen = signal<boolean>(false);
 
   constructor(private cartService: CartService, private router: Router) { }
-
+  private AuthService = inject(AuthService);
+  private toast = inject(ToastService)
   addToCart() {
+    if(!this.AuthService.isLoggedIn()){
+      this.toast.showError("You are not logged in")
+      this.router.navigate(['/sign-in-page']);
+      return;
+    }
     this.cartService.addToCart(this.product()!);
   }
 

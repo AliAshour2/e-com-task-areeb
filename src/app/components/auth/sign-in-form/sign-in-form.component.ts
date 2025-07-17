@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { SignInData } from '../../../models/auth.model';
 import { InputFieldComponent } from "../../../shared/components/input-field/input-field.component";
 import { ToastService } from '../../../shared/services/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class SignInFormComponent {
  
   private authService = inject(AuthService);
   private toast = inject(ToastService);
+  private router = inject(Router);
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -51,6 +53,7 @@ export class SignInFormComponent {
         this.isSubmitting.set(false);
         localStorage.setItem('token' , response.token);
         this.toast.showSuccess("Sign in success");
+        this.router.navigate(['/']);
         
       },
 
