@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../../services/auth/auth.service';
 import { SignInData } from '../../../models/auth.model';
 import { InputFieldComponent } from "../../../shared/components/input-field/input-field.component";
+import { ToastService } from '../../../shared/services/toast.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class SignInFormComponent {
 
  
   private authService = inject(AuthService);
+  private toast = inject(ToastService);
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -47,13 +49,15 @@ export class SignInFormComponent {
     this.authService.signin(userData).subscribe({
       next: (response) => {
         this.isSubmitting.set(false);
-        localStorage.setItem('token' , response.token)
+        localStorage.setItem('token' , response.token);
+        this.toast.showSuccess("Sign in success");
         
       },
 
       error: (error) => {
         this.isSubmitting.set(false);
         this.errorMessage.set(error?.error?.message || 'Login failed');
+        this.toast.showError(error?.error?.message || 'Login failed')
       }
     })
   }

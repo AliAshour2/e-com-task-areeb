@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SignUpData } from '../../../models/auth.model';
 import { InputFieldComponent } from '../../../shared/components/input-field/input-field.component';
 import { AuthService } from '../../../services/auth/auth.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -16,6 +17,8 @@ export class SignUpFormComponent {
 
   isLoading = signal<boolean>(false);
   errorMessage = signal<string>('');
+
+  toast = inject(ToastService);
 
 
   constructor(private authService: AuthService) {
@@ -69,11 +72,13 @@ export class SignUpFormComponent {
     this.authService.signup(signupData).subscribe({
       next: (response) => {
         this.isLoading.set(false);
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.token);
+        this.toast.showSuccess("Sign up success");
       },
       error: (error) => {
         this.isLoading.set(false);
         this.errorMessage.set(error.error?.message || 'Signup failed. Please try again.');
+        this.toast.showError(error.error?.message);
       }
     })
   }
